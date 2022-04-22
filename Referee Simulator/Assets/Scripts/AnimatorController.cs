@@ -22,8 +22,7 @@ public class AnimatorController : MonoBehaviour
        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("afterTackle"))
            azione = ActionsController.Azione.FALLEN_AFTER_TACKLE;
        
-       
-       Debug.Log(gameObject.name + " " + azione);
+       //Debug.Log(azione + " " + gameObject.name);
    }
 
    public void SetParameter(string parametro, bool valore)
@@ -34,6 +33,7 @@ public class AnimatorController : MonoBehaviour
    public void SetTrigger(string trigger)
    {
        _animator.SetTrigger(trigger);
+       
    }
 
    public void SetParameter(ActionsController.Azione azione, bool valore)

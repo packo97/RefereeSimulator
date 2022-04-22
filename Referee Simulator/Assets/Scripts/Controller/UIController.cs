@@ -40,8 +40,10 @@ public class UIController : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
-                    
+                gameObject.GetComponent<ActionsController>().SetAllElementsToInitialPosition();  
             }
+            
+            
         }
         
     }

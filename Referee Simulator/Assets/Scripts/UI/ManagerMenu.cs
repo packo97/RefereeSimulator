@@ -124,7 +124,7 @@ public class ManagerMenu : MonoBehaviour
         }
         else
         {
-            _infoBox.SetText("Referee is not added in the pitch.", InfoBox.TypeOfMessage.ERROR);
+            _infoBox.SetText("Referee is not added in the pitch.", InfoBox.TypeOfMessage.ERROR, true);
         }
         _exitButton.gameObject.SetActive(true);
     }

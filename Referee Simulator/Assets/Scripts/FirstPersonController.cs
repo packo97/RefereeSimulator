@@ -76,7 +76,8 @@ public class FirstPersonController : MonoBehaviour
         }
 
         // Move the controller
-        _characterController.Move(_moveDirection * Time.deltaTime);
+        _moveDirection *= Time.deltaTime;
+        _characterController.Move(_moveDirection);
 
         // Player and Camera rotation
         if (canMove)
@@ -97,6 +98,11 @@ public class FirstPersonController : MonoBehaviour
             _animatorController.SetParameter("running", false);
         }
 
+    }
+
+    public Vector3 GetMoveDirection()
+    {
+        return _moveDirection;
     }
     
 

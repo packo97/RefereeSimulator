@@ -20,7 +20,7 @@ public class InfoBox : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetText(string text, TypeOfMessage typeOfMessage)
+    public void SetText(string text, TypeOfMessage typeOfMessage, bool hideAfter3Seconds)
     {
         gameObject.SetActive(true);
         if (typeOfMessage == TypeOfMessage.INFO)
@@ -32,7 +32,8 @@ public class InfoBox : MonoBehaviour
 
         _text.text = text;
 
-        StartCoroutine(DeleteMessageAfter3Seconds());
+        if (hideAfter3Seconds)
+            StartCoroutine(DeleteMessageAfter3Seconds());
     }
 
     private IEnumerator DeleteMessageAfter3Seconds()
@@ -42,4 +43,5 @@ public class InfoBox : MonoBehaviour
         _image.color = new Color(255f, 255f, 255f, 100f);
         gameObject.SetActive(false);
     }
+    
 }

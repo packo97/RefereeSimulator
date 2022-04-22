@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Actions : MonoBehaviour
@@ -21,17 +23,26 @@ public class Actions : MonoBehaviour
         }
     }
 
+    private bool _hasCollide = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Body"))
+        if (other.gameObject.tag.Equals("Body") && !_hasCollide)
         {
             if (gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.TACKLE)
             {
                 other.gameObject.GetComponentInParent<AnimatorController>().SetTrigger("afterTackle");
+                
+                _hasCollide = true;
+                StartCoroutine(ResetCollision());
             }
                 
         }
-        
-        
+    }
+
+    private IEnumerator ResetCollision()
+    {
+        yield return new WaitForSeconds(1);
+        _hasCollide = false;
+
     }
 }

@@ -41,16 +41,16 @@ public class FormDati : MonoBehaviour
         if (name_video != "" && category != "" && difficulty != "" && answer != "" && reason != "" && state != "")
         {
             gameObject.SetActive(false);
-            _infoBox.SetText("Simulation saved.", InfoBox.TypeOfMessage.SUCCESS);
+            _infoBox.SetText("Simulation saved.", InfoBox.TypeOfMessage.SUCCESS, true);
         }
         else
         {
-            _infoBox.SetText("Pay Attention, some data are not filled.", InfoBox.TypeOfMessage.ERROR);
+            _infoBox.SetText("Pay Attention, some data are not filled.", InfoBox.TypeOfMessage.ERROR, true);
         }
         
         bool save = SaveLoadManager.SaveSimulation(name_video, category, author, difficulty, answer, reason, state);
         if (!save)
-            _infoBox.SetText("There is a simulation with the same name.", InfoBox.TypeOfMessage.ERROR);
+            _infoBox.SetText("There is a simulation with the same name.", InfoBox.TypeOfMessage.ERROR, true);
     }
     
 }

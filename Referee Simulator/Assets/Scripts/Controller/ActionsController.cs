@@ -64,7 +64,8 @@ public class ActionsController : MonoBehaviour
     }
     
     [SerializeField] private EditorMenu editorMenu;
-
+    [SerializeField] private InfoBox infoBox;
+    
     private GameObject _element;
 
     private bool recordingMode;
@@ -83,9 +84,17 @@ public class ActionsController : MonoBehaviour
     {
         if (GameEvent.isActionOpen)
         {
+            if(!recordingMode)
+                infoBox.SetText("Press Enter to move player and start recording\n" +
+                                "Press R to replay\n" +
+                                "Press P to back to initial position\n" +
+                                "Press ESC to exit", InfoBox.TypeOfMessage.INFO, false);
+            
             PosizionamentoMenu.GetCurrentElementSelected().GetComponentInChildren<Camera>().depth = 1;
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                infoBox.SetText("Press P to stop recording", InfoBox.TypeOfMessage.INFO, false);
+                
                 PosizionamentoMenu.GetCurrentElementSelected().GetComponent<FirstPersonController>().enabled = true;
                 PosizionamentoMenu.GetCurrentElementSelected().GetComponent<Actions>().enabled = true;
                 Cursor.lockState = CursorLockMode.Locked;
@@ -143,7 +152,10 @@ public class ActionsController : MonoBehaviour
             }
             
         }
-        
+        else
+        {
+            infoBox.gameObject.SetActive(false);
+        }
         
     }
     
@@ -162,10 +174,10 @@ public class ActionsController : MonoBehaviour
         {
             if (element.transform.position != initialPosition)
             {
-                positions.Add(element.transform.position);
+                //positions.Add(element.transform.position);
+                positions.Add(element.GetComponent<FirstPersonController>().GetMoveDirection());
                 angles.Add(element.transform.eulerAngles);
                 actions.Add(element.GetComponent<AnimatorController>().GetState());
-                Debug.Log(element.name + " " + element.GetComponent<AnimatorController>().GetState());
             }
             
             yield return null;
@@ -185,6 +197,9 @@ public class ActionsController : MonoBehaviour
         recordingMode = false;
         PosizionamentoMenu.GetCurrentElementSelected().GetComponent<FirstPersonController>().enabled = false;
         PosizionamentoMenu.GetCurrentElementSelected().GetComponent<Actions>().enabled = false;
+
+        SetAllElementsToInitialPosition();
+        
     }
 
     public void StartReplay()
@@ -200,7 +215,7 @@ public class ActionsController : MonoBehaviour
         coroutineReplayStarted = true;
         for (int i = 0; i < rd.positions.Count; i++)
         {
-            rd.element.transform.position = rd.positions[i];
+            rd.element.GetComponent<CharacterController>().Move(rd.positions[i]);
             rd.element.transform.eulerAngles = rd.angles[i];
             
 
@@ -209,13 +224,25 @@ public class ActionsController : MonoBehaviour
                 rd.element.GetComponent<AnimatorController>().SetParameter((Azione) rd.actions[i], true);
             }
             
+            //Debug.Log(rd.actions[i]);
 
             yield return null;
         }
-        
-        rd.element.transform.position = rd.initialPosition;
-        rd.element.transform.eulerAngles = rd.initialRotation;
         coroutineReplayStarted = false;
     }
-    
+
+
+    public void DeleteRecordings()
+    {
+        recording.Clear();
+    }
+
+    public void SetAllElementsToInitialPosition()
+    {
+        foreach (RecordData rd in recording)
+        {
+            rd.element.transform.position = rd.initialPosition;
+            rd.element.transform.eulerAngles = rd.initialRotation;
+        }
+    }
 }
