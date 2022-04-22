@@ -1,0 +1,660 @@
+[api-updater (non-obsolete-error-filter)] 04/04/2022 12:15:12 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 765,093ms
+moved types parse time: 143ms
+candidates parse time : 3ms
+C# parse time         : 891ms
+candidates check time : 85ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 11:45:08 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 563,181ms
+moved types parse time: 84ms
+candidates parse time : 1ms
+C# parse time         : 673ms
+candidates check time : 50ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 12:00:13 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 64,08ms
+moved types parse time: 66ms
+candidates parse time : 1ms
+C# parse time         : 230ms
+candidates check time : 47ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 12:27:10 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 84,747ms
+moved types parse time: 59ms
+candidates parse time : 1ms
+C# parse time         : 292ms
+candidates check time : 72ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 15:34:27 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 103,395ms
+moved types parse time: 143ms
+candidates parse time : 1ms
+C# parse time         : 374ms
+candidates check time : 92ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 16:24:14 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 61,803ms
+moved types parse time: 57ms
+candidates parse time : 1ms
+C# parse time         : 247ms
+candidates check time : 57ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 16:25:35 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 72,876ms
+moved types parse time: 80ms
+candidates parse time : 1ms
+C# parse time         : 346ms
+candidates check time : 59ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 16:25:46 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 91,067ms
+moved types parse time: 84ms
+candidates parse time : 1ms
+C# parse time         : 280ms
+candidates check time : 66ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 16:36:42 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 74,895ms
+moved types parse time: 68ms
+candidates parse time : 1ms
+C# parse time         : 258ms
+candidates check time : 52ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 06/04/2022 17:01:27 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 103,085ms
+moved types parse time: 84ms
+candidates parse time : 2ms
+C# parse time         : 358ms
+candidates check time : 88ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 09:03:04 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 825,591ms
+moved types parse time: 267ms
+candidates parse time : 3ms
+C# parse time         : 849ms
+candidates check time : 126ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 09:04:14 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 204,726ms
+moved types parse time: 100ms
+candidates parse time : 2ms
+C# parse time         : 485ms
+candidates check time : 69ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 16:14:52 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 95,767ms
+moved types parse time: 63ms
+candidates parse time : 1ms
+C# parse time         : 246ms
+candidates check time : 47ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 16:14:59 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 62,735ms
+moved types parse time: 79ms
+candidates parse time : 1ms
+C# parse time         : 273ms
+candidates check time : 58ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 16:15:22 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 68,61ms
+moved types parse time: 58ms
+candidates parse time : 1ms
+C# parse time         : 235ms
+candidates check time : 38ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 17:21:41 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 130,965ms
+moved types parse time: 108ms
+candidates parse time : 2ms
+C# parse time         : 477ms
+candidates check time : 76ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 17:24:18 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 193,418ms
+moved types parse time: 160ms
+candidates parse time : 4ms
+C# parse time         : 611ms
+candidates check time : 91ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 17:24:32 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 97,844ms
+moved types parse time: 137ms
+candidates parse time : 2ms
+C# parse time         : 473ms
+candidates check time : 81ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 17:25:01 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 109,804ms
+moved types parse time: 130ms
+candidates parse time : 4ms
+C# parse time         : 522ms
+candidates check time : 93ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 08/04/2022 17:29:05 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 107,354ms
+moved types parse time: 96ms
+candidates parse time : 2ms
+C# parse time         : 370ms
+candidates check time : 105ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 10:21:04 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 595,824ms
+moved types parse time: 76ms
+candidates parse time : 1ms
+C# parse time         : 729ms
+candidates check time : 65ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 10:21:44 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 54,189ms
+moved types parse time: 58ms
+candidates parse time : 1ms
+C# parse time         : 275ms
+candidates check time : 35ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 10:44:58 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 72,328ms
+moved types parse time: 89ms
+candidates parse time : 1ms
+C# parse time         : 337ms
+candidates check time : 49ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 12:08:46 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 138,739ms
+moved types parse time: 72ms
+candidates parse time : 1ms
+C# parse time         : 418ms
+candidates check time : 89ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 14:08:02 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 88,711ms
+moved types parse time: 68ms
+candidates parse time : 1ms
+C# parse time         : 259ms
+candidates check time : 46ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 14:19:59 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 109,388ms
+moved types parse time: 64ms
+candidates parse time : 1ms
+C# parse time         : 300ms
+candidates check time : 49ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 14:20:12 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 79,285ms
+moved types parse time: 62ms
+candidates parse time : 1ms
+C# parse time         : 224ms
+candidates check time : 45ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 16:38:38 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 78,759ms
+moved types parse time: 60ms
+candidates parse time : 1ms
+C# parse time         : 252ms
+candidates check time : 46ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 17:16:20 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 89,056ms
+moved types parse time: 59ms
+candidates parse time : 2ms
+C# parse time         : 240ms
+candidates check time : 41ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 17:17:15 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 77,645ms
+moved types parse time: 72ms
+candidates parse time : 1ms
+C# parse time         : 298ms
+candidates check time : 46ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 17:48:29 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 123,734ms
+moved types parse time: 103ms
+candidates parse time : 1ms
+C# parse time         : 381ms
+candidates check time : 60ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 18:09:32 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 91,208ms
+moved types parse time: 80ms
+candidates parse time : 1ms
+C# parse time         : 357ms
+candidates check time : 75ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 11/04/2022 18:10:04 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 66,787ms
+moved types parse time: 56ms
+candidates parse time : 1ms
+C# parse time         : 295ms
+candidates check time : 83ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 09:11:49 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 519,906ms
+moved types parse time: 242ms
+candidates parse time : 6ms
+C# parse time         : 938ms
+candidates check time : 153ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 11:02:39 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 604,896ms
+moved types parse time: 210ms
+candidates parse time : 32ms
+C# parse time         : 900ms
+candidates check time : 97ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 11:32:09 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 60,672ms
+moved types parse time: 87ms
+candidates parse time : 4ms
+C# parse time         : 287ms
+candidates check time : 64ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 12:11:36 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 76,916ms
+moved types parse time: 93ms
+candidates parse time : 2ms
+C# parse time         : 369ms
+candidates check time : 98ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 12:16:29 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 114,107ms
+moved types parse time: 131ms
+candidates parse time : 2ms
+C# parse time         : 477ms
+candidates check time : 99ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 12:16:40 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 93,759ms
+moved types parse time: 94ms
+candidates parse time : 3ms
+C# parse time         : 404ms
+candidates check time : 115ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 13/04/2022 14:31:57 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 121,36ms
+moved types parse time: 121ms
+candidates parse time : 4ms
+C# parse time         : 448ms
+candidates check time : 111ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 14/04/2022 16:58:16 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 409,665ms
+moved types parse time: 52ms
+candidates parse time : 1ms
+C# parse time         : 651ms
+candidates check time : 52ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 14/04/2022 17:41:53 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 139,916ms
+moved types parse time: 107ms
+candidates parse time : 2ms
+C# parse time         : 373ms
+candidates check time : 60ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 15/04/2022 11:03:05 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 131,747ms
+moved types parse time: 57ms
+candidates parse time : 1ms
+C# parse time         : 220ms
+candidates check time : 49ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 15/04/2022 12:31:24 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 127,063ms
+moved types parse time: 128ms
+candidates parse time : 2ms
+C# parse time         : 483ms
+candidates check time : 106ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 10:48:29 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 800,889ms
+moved types parse time: 99ms
+candidates parse time : 2ms
+C# parse time         : 743ms
+candidates check time : 109ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 12:53:59 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 117,039ms
+moved types parse time: 131ms
+candidates parse time : 2ms
+C# parse time         : 493ms
+candidates check time : 101ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 12:54:32 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 111,204ms
+moved types parse time: 85ms
+candidates parse time : 2ms
+C# parse time         : 373ms
+candidates check time : 67ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:25:07 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 173,718ms
+moved types parse time: 93ms
+candidates parse time : 2ms
+C# parse time         : 418ms
+candidates check time : 100ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:26:37 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 178,833ms
+moved types parse time: 134ms
+candidates parse time : 3ms
+C# parse time         : 514ms
+candidates check time : 130ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:27:13 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 124,331ms
+moved types parse time: 94ms
+candidates parse time : 2ms
+C# parse time         : 477ms
+candidates check time : 126ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:30:03 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 295,76ms
+moved types parse time: 174ms
+candidates parse time : 2ms
+C# parse time         : 801ms
+candidates check time : 153ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:30:35 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 96,943ms
+moved types parse time: 96ms
+candidates parse time : 1ms
+C# parse time         : 511ms
+candidates check time : 117ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:31:14 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 153,332ms
+moved types parse time: 94ms
+candidates parse time : 2ms
+C# parse time         : 461ms
+candidates check time : 130ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:31:45 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 96,256ms
+moved types parse time: 90ms
+candidates parse time : 2ms
+C# parse time         : 401ms
+candidates check time : 104ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 14:31:54 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 121,262ms
+moved types parse time: 127ms
+candidates parse time : 8ms
+C# parse time         : 605ms
+candidates check time : 127ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 15:18:23 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 91,342ms
+moved types parse time: 84ms
+candidates parse time : 2ms
+C# parse time         : 276ms
+candidates check time : 47ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 15:31:19 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 77,398ms
+moved types parse time: 72ms
+candidates parse time : 2ms
+C# parse time         : 364ms
+candidates check time : 55ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 19/04/2022 15:33:04 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 77,762ms
+moved types parse time: 87ms
+candidates parse time : 2ms
+C# parse time         : 310ms
+candidates check time : 67ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 21/04/2022 16:17:59 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 599,38ms
+moved types parse time: 59ms
+candidates parse time : 1ms
+C# parse time         : 654ms
+candidates check time : 76ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 21/04/2022 16:18:19 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 170,94ms
+moved types parse time: 93ms
+candidates parse time : 1ms
+C# parse time         : 426ms
+candidates check time : 144ms
+console write time    : 3ms
+
+[api-updater (non-obsolete-error-filter)] 21/04/2022 16:18:31 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 104,045ms
+moved types parse time: 84ms
+candidates parse time : 1ms
+C# parse time         : 362ms
+candidates check time : 98ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 21/04/2022 16:19:20 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 127,216ms
+moved types parse time: 94ms
+candidates parse time : 2ms
+C# parse time         : 383ms
+candidates check time : 115ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 21/04/2022 16:19:25 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 99,746ms
+moved types parse time: 171ms
+candidates parse time : 2ms
+C# parse time         : 553ms
+candidates check time : 151ms
+console write time    : 1ms
+
+[api-updater (non-obsolete-error-filter)] 21/04/2022 16:21:33 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 112,365ms
+moved types parse time: 87ms
+candidates parse time : 1ms
+C# parse time         : 403ms
+candidates check time : 122ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 22/04/2022 10:50:17 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 114,312ms
+moved types parse time: 76ms
+candidates parse time : 1ms
+C# parse time         : 330ms
+candidates check time : 78ms
+console write time    : 0ms
+
+[api-updater (non-obsolete-error-filter)] 22/04/2022 10:51:55 : Starting /home/pasquale/Scrivania/virtual_reality/2020.2.6f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 75,99ms
+moved types parse time: 65ms
+candidates parse time : 1ms
+C# parse time         : 251ms
+candidates check time : 59ms
+console write time    : 0ms
+
