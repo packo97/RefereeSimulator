@@ -99,7 +99,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
             }
             else
             {
-                obj.transform.position = hit.point;
+                if (obj.tag.Equals("Ball"))
+                    obj.transform.position = new Vector3(hit.point.x, 0.17f, hit.point.z);
+                else
+                    obj.transform.position = hit.point;
             }
             
         }

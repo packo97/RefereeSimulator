@@ -23,13 +23,15 @@ public class FirstPersonController : MonoBehaviour
     public bool canMove = true;
 
     private AnimatorController _animatorController;
+
+    private Ball _ball;
     
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
         _animatorController = GetComponent<AnimatorController>();
-
+        _ball = null;
     }
 
     void Update()
@@ -92,10 +94,19 @@ public class FirstPersonController : MonoBehaviour
         if (_moveDirection.x != 0 || _moveDirection.z != 0)
         {
             _animatorController.SetParameter("running", true);
+            if (_ball != null)
+            {
+                _ball.StartBallRotation();
+            }
+               
         }
         else
         {
             _animatorController.SetParameter("running", false);
+            if (_ball != null)
+            {
+                _ball.SetBallRotation(false);
+            }
         }
 
     }
@@ -104,6 +115,10 @@ public class FirstPersonController : MonoBehaviour
     {
         return _moveDirection;
     }
-    
+
+    public void SetBall(Ball ball)
+    {
+        _ball = ball;
+    }
 
 }

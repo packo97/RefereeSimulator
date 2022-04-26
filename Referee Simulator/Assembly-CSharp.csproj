@@ -47,6 +47,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\Test\DoPass.cs" />
      <Compile Include="Assets\Scripts\UI\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Controller\PitchController.cs" />
