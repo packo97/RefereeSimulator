@@ -19,6 +19,8 @@ public class EditorMenu : MonoBehaviour
     [SerializeField] private Button confermaButton;
     [SerializeField] private Button closeButton;
     [SerializeField] private Button playButton;
+
+    [SerializeField] private ActionsMenu actionMenu;
     
     private void Start()
     {
@@ -213,13 +215,15 @@ public class EditorMenu : MonoBehaviour
     }
 
 
-    public void SetActions()
+    public void SetActions(int numero)
     {
         SwitchComandiPosizionamento();
         playButton.gameObject.SetActive(false);
         cameraButton.gameObject.SetActive(false);
         confermaButton.gameObject.SetActive(false);
         closeButton.gameObject.SetActive(false);
-        _posizionamentoMenu.SetActionsOfSelectedPlayer();
+        //_posizionamentoMenu.SetActionsOfSelectedPlayer();
+        
+        actionMenu.OpenActionMode(numero);
     }
 }

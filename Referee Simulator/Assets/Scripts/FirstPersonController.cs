@@ -121,4 +121,25 @@ public class FirstPersonController : MonoBehaviour
         _ball = ball;
     }
 
+    public void ReplayMove(Vector3 movement)
+    {
+        _characterController.Move(movement);
+        if (movement.x != 0 || movement.z != 0)
+        {
+            _animatorController.SetParameter("running", true);
+            if (_ball != null)
+            {
+                _ball.StartBallRotation();
+            }
+               
+        }
+        else
+        {
+            _animatorController.SetParameter("running", false);
+            if (_ball != null)
+            {
+                _ball.SetBallRotation(false);
+            }
+        }
+    }
 }

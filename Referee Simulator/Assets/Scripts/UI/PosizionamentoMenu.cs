@@ -31,7 +31,8 @@ public class PosizionamentoMenu : MonoBehaviour
                     }
                 }
             }
-
+            /*
+             Attiva bottone che per il momento non mi serve
             if (currentElementSelected != null)
             {
                 if (currentElementSelected.tag.Equals("PlayerA") || currentElementSelected.tag.Equals("PlayerB"))
@@ -40,7 +41,7 @@ public class PosizionamentoMenu : MonoBehaviour
                     actionButton.SetActive(false);
             }
             else
-                actionButton.SetActive(false);
+                actionButton.SetActive(false);*/
             
             
     }

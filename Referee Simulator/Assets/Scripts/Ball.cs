@@ -52,8 +52,7 @@ public class Ball : MonoBehaviour
         StartBallRotation();
         while(Vector3.Distance(transform.position, modifiedTarget) > 0.001f)
         {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-            Debug.Log(distance);
+            //modifiedTarget = new Vector3(target.transform.position.x, 0.17f, target.transform.position.z);
             float step =  speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, modifiedTarget, step);
             yield return null;
@@ -61,5 +60,6 @@ public class Ball : MonoBehaviour
         transform.SetParent(target.transform);
         transform.position = transform.parent.TransformPoint(0, 0.17f, 1);
         _ballRotation = false;
+        transform.parent.GetComponent<FirstPersonController>().SetBall(this);
     }
 }

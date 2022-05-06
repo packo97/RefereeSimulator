@@ -9,9 +9,18 @@ public class Rotation : MonoBehaviour
     [SerializeField] private GameObject indicator;
     private void Start()
     {
-        elementInThePitch = GetComponentInParent<DragDrop>().GetElementInThePitch();
+        //elementInThePitch = GetComponentInParent<DragDrop>().GetElementInThePitch();
+        elementInThePitch = PosizionamentoMenu.GetCurrentElementSelected();
     }
 
+    public void SetElement(GameObject obj)
+    {
+        elementInThePitch = obj;
+        float numero = (360 - elementInThePitch.transform.eulerAngles.y + 90) % 360;
+        indicator.GetComponent<RectTransform>().eulerAngles = new Vector3(0, 0, numero);
+        
+    }
+    
     public void RightRotation()
     {
         elementInThePitch.transform.Rotate(0,10,0, Space.Self);

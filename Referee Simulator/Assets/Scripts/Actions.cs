@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Actions : MonoBehaviour
@@ -59,12 +60,16 @@ public class Actions : MonoBehaviour
             Debug.Log("passa il pallone a...");
             Debug.Log("disegna raycast per trovare un giocatore");
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
+            
+            //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
+            if (Physics.BoxCast(transform.position, Vector3.one, transform.forward, out hit))
             {
+                _animatorController.SetTrigger("pass");
                 Debug.Log("Passa il pallone a " + hit.collider.transform.parent.name);
                 GameObject ball = GetComponentInChildren<Ball>().gameObject;
-                
                 GameObject target = hit.collider.transform.parent.gameObject;
+
+               
                 ball.GetComponent<Ball>().StartPassBallTo(target);
                 ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                 gameObject.GetComponent<FirstPersonController>().SetBall(null);
@@ -83,8 +88,9 @@ public class Actions : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Body") && !_hasCollide)
         {
-            if (gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.TACKLE)
+            if (gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.TACKLE && !ReferenceEquals(gameObject, other.transform.parent.gameObject))
             {
+                Debug.Log("collisione con " + other.transform.parent.name);
                 other.gameObject.GetComponentInParent<AnimatorController>().SetTrigger("afterTackle");
                 
                 _hasCollide = true;
@@ -98,6 +104,5 @@ public class Actions : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         _hasCollide = false;
-
     }
 }

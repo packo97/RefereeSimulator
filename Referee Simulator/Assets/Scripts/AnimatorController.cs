@@ -21,6 +21,8 @@ public class AnimatorController : MonoBehaviour
            azione = ActionsController.Azione.TACKLE;
        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("afterTackle"))
            azione = ActionsController.Azione.FALLEN_AFTER_TACKLE;
+       else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("pass"))
+           azione = ActionsController.Azione.PASS_BALL;
        
        //Debug.Log(azione + " " + gameObject.name);
    }
@@ -49,10 +51,14 @@ public class AnimatorController : MonoBehaviour
        if (azione == ActionsController.Azione.FALLEN_AFTER_TACKLE)
            _animator.SetTrigger("afterTackle");
        
+       if (azione == ActionsController.Azione.PASS_BALL)
+           _animator.SetTrigger("pass");
+       
    }
 
    public ActionsController.Azione GetState()
    {
        return azione;
    }
+   
 }

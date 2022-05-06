@@ -8,6 +8,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField] private Camera cameraBiliardino;
     [SerializeField] private GameObject objPrefab;
     [SerializeField] private GameObject directionPrefab;
+    [SerializeField] private GameObject details;
     
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
@@ -94,8 +95,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 }
                 
                 gameObject.transform.SetParent(GameObject.Find("IconeInserite").transform);
-                if (directionPrefab != null)
-                    Instantiate(directionPrefab, gameObject.transform);
+                /*if (directionPrefab != null)
+                    Instantiate(directionPrefab, gameObject.transform);*/
             }
             else
             {
@@ -150,6 +151,12 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void SetSelected()
     {
-        PosizionamentoMenu.SetCurrentElementSelected(obj);
+        if (_isDropped)
+        {
+            PosizionamentoMenu.SetCurrentElementSelected(obj);
+            details.GetComponent<ActionsMenu>().SetElement(obj);
+            details.GetComponent<ActionsMenu>().SetText("selezionato...");
+        }
+        
     }
 }
