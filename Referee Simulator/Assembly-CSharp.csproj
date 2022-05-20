@@ -47,9 +47,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ElementIdentifier.cs" />
+     <Compile Include="Assets\Scripts\TargetForElement.cs" />
      <Compile Include="Assets\Scripts\Test\DoPass.cs" />
-     <Compile Include="Assets\Scripts\UI\ActionIcon.cs" />
-     <Compile Include="Assets\Scripts\UI\ActionsMenu.cs" />
      <Compile Include="Assets\Scripts\UI\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Controller\PitchController.cs" />
      <Compile Include="Assets\Scripts\Actions.cs" />
@@ -77,10 +77,13 @@
      <Compile Include="Assets\Scripts\Controller\ActionsController.cs" />
      <Compile Include="Assets\Scripts\UI\PosizionamentoMenu.cs" />
      <Compile Include="Assets\Scripts\UI\SimulationDetails.cs" />
+     <Compile Include="Assets\Scripts\UI\ActionsMenu.cs" />
      <Compile Include="Assets\Scripts\UI\Cestino.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\FirstPersonController.cs" />
+     <Compile Include="Assets\Scripts\SaveLoad\Vector3Surrogate.cs" />
      <Compile Include="Assets\Scripts\SaveLoad\SaveLoadManager.cs" />
+     <Compile Include="Assets\Scripts\UI\ActionIcon.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.33f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

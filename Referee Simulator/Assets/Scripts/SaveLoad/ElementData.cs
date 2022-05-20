@@ -24,8 +24,10 @@ public class ElementData
         public float iconRotationX;
         public float iconRotationY;
         public float iconRotationZ;
+
+        public int id;
         
-        public Element(Transform t, RectTransform rt)
+        public Element(Transform t, RectTransform rt, int id)
         {
             //info elemento nel pitch
             positionX = t.transform.position.x;
@@ -51,8 +53,8 @@ public class ElementData
                 }
                     
             }
-            
-            
+
+            this.id = id;
         }
     }
     [System.Serializable]
@@ -78,19 +80,24 @@ public class ElementData
         }
     }
 
-    public ArrayList elements;
+    public List<Element> elements;
     public Details details;
+
+    public ArrayList recording;
     
-    public ElementData(ArrayList obj, ArrayList icons, string name, string category, string author, string difficulty, string answer, string reason, string state, string fileName, bool refereeDropped)
+    public ElementData(List<(Transform, int)> obj, ArrayList icons, string name, string category, string author, string difficulty, string answer, string reason, string state, string fileName, bool refereeDropped, ArrayList recording)
     {
-        elements = new ArrayList();
+        elements = new List<Element>();
         for (int i = 0; i < obj.Count; i++)
         {
-            Element el = new Element(obj[i] as Transform, icons[i] as RectTransform);
+            Element el = new Element(obj[i].Item1, icons[i] as RectTransform, obj[i].Item2);
             elements.Add(el);
         }
         details = new Details(name, category, author, difficulty, answer, reason, state);
         this.fileName = fileName;
         this.refereeDropped = refereeDropped;
+
+        this.recording = recording;
+        Debug.Log(fileName + " " + recording.Count);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ActionsMenu : MonoBehaviour
 {
     [SerializeField] private Image elementImage;
+    [SerializeField] private Text playerNumber;
     [SerializeField] private Text text;
     [SerializeField] private Rotation indicatore;
     private GameObject _currentObjSelected;
@@ -28,10 +29,12 @@ public class ActionsMenu : MonoBehaviour
         if (obj.tag.Equals("PlayerA"))
         {
             elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerA") as Sprite;
+            playerNumber.text = obj.GetComponent<Player>().id.ToString();
         }
         else if (obj.tag.Equals("PlayerB"))
         {
             elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerB") as Sprite;
+            playerNumber.text = obj.GetComponent<Player>().id.ToString();
         }
         else if (obj.tag.Equals("Referee"))
         {
@@ -45,10 +48,12 @@ public class ActionsMenu : MonoBehaviour
         }
         
         //carico le icone per le corrispondenti azioni già registrate
-        int numberOfActionsRegistered = GameObject.Find("Controller").GetComponent<ActionsController>()
-            .GetNumberOfActionRegistered(_currentObjSelected);
-        Debug.Log("numero di azioni registrate " + numberOfActionsRegistered);
-        for(int i=0; i<numberOfActionsRegistered; i++)
+        /*int numberOfActionsRegistered = GameObject.Find("Controller").GetComponent<ActionsController>()
+            .GetNumberOfActionRegistered(_currentObjSelected);*/
+        //Debug.Log("numero di azioni registrate " + numberOfActionsRegistered);
+        ArrayList actionRegistered = GameObject.Find("Controller").GetComponent<ActionsController>()
+            .GetActionsRegistered(_currentObjSelected);
+        for(int i=0; i<actionRegistered.Count; i++)
         {
             GameObject iconAction = Instantiate(iconActionPrefab, listOfActions.transform);
             iconAction.name = "action" + i;
@@ -69,22 +74,24 @@ public class ActionsMenu : MonoBehaviour
         else
             isRecordedTheLastAction = GameObject.Find("Controller").GetComponent<ActionsController>().IsRecordedTheLastAction(_currentObjSelected, numberOfActionInserted);
 
-            
-        if (numberOfActionInserted < 16 && isRecordedTheLastAction)
+        bool allTheActionsValid = GameObject.Find("Controller").GetComponent<ActionsController>()
+            .AllTheActionsValid(_currentObjSelected);
+        
+        if (numberOfActionInserted < 16 && isRecordedTheLastAction && allTheActionsValid)
         {
             GameObject iconAction = Instantiate(iconActionPrefab, listOfActions.transform);
             iconAction.name = "action" + numberOfActionInserted;
         }
-        else
+        else if (numberOfActionInserted >= 16)
             text.text = "Numero massimo di azioni raggiunto";
+        else if (!allTheActionsValid)
+            text.text = "Cancella prima le azioni invalide con un click su di esse";
     }
     
     public void OpenActionMode(int numero)
     {
-
         if (numero > 0)
         {
-            Debug.Log("Recupera posizione finale della precedente azione");
             Vector3 initialPosition = GameObject.Find("Controller").GetComponent<ActionsController>()
                 .GetInitialPositionOfTheNextAction(_currentObjSelected);
             _currentObjSelected.transform.position = initialPosition;
@@ -92,10 +99,14 @@ public class ActionsMenu : MonoBehaviour
                 .GetInitialAnglesOfTheNextAction(_currentObjSelected);
             _currentObjSelected.transform.eulerAngles = initialAngles;
             //Debug.Log("initial position richiesta " + initialPosition);
+
+            GameObject ball = GameObject.Find("Controller").GetComponent<PitchController>().GetBall();
+            Vector3 initialPositionBall = GameObject.Find("Controller").GetComponent<ActionsController>()
+                .GetInitialPositionBallOfTheNextAction();
+           
+            ball.transform.position = initialPositionBall;
+
         }
-            
-       
-        
         
         _currentObjSelected.GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
         GameEvent.isActionOpen = true;

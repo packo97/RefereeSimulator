@@ -254,7 +254,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3382973905293306269}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3382973905293306267}
+        m_TargetAssemblyTypeName: DragDrop, Assembly-CSharp
+        m_MethodName: SetSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3382973905293306267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,9 +280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  _cameraBiliardino: {fileID: 0}
+  cameraBiliardino: {fileID: 0}
   objPrefab: {fileID: 5044954882602163400, guid: de3934d3b61a15cf0b4cf1c8189b1bbf, type: 3}
   directionPrefab: {fileID: 1943125638316047303, guid: f60193d628ec43faeb4df1ac6c5c0215, type: 3}
+  actionMenu: {fileID: 0}
 --- !u!225 &3382973905293306266
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -299,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1831627615107174519
 RectTransform:
   m_ObjectHideFlags: 0

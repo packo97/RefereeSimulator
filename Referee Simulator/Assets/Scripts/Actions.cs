@@ -39,11 +39,13 @@ public class Actions : MonoBehaviour
                 {
                     if (c.tag.Equals("Ball"))
                     {
-                        Debug.Log("pallone preso");
+                        //Debug.Log("pallone preso");
                         _ballCatched = true;
                         GameObject ball = c.gameObject;
                         c.transform.SetParent(gameObject.transform);
                         gameObject.GetComponent<FirstPersonController>().SetBall(ball.GetComponent<Ball>());
+                        GameObject.Find("Controller").GetComponent<ActionsController>().AddNewPossessionInRecordingForTheBall(ball);
+                        _animatorController.SetTrigger("receive");
                     }
                 } 
             }
@@ -53,15 +55,24 @@ public class Actions : MonoBehaviour
                 ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                 gameObject.GetComponent<FirstPersonController>().SetBall(null);
                 _ballCatched = false;
+                _animatorController.SetTrigger("receive");
             }
         }
-        else if (Input.GetMouseButtonDown(0) && _ballCatched)
+        else if (Input.GetMouseButton(0) && _ballCatched)
         {
-            Debug.Log("passa il pallone a...");
-            Debug.Log("disegna raycast per trovare un giocatore");
-            RaycastHit hit;
+            //Debug.Log("passa il pallone a...");
+            //Debug.Log("disegna raycast per trovare un giocatore");
             
-            //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit))
+            // è il momento di fare un passaggio quindì devo stoppare tutte le coroutine
+            // per rendere semplice il passaggio
+
+            ActionsController.pause = true;
+            gameObject.GetComponent<FirstPersonController>().enabled = false;
+            GameEvent.isBiliardinoOpen = true;
+            gameObject.GetComponentInChildren<Camera>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            /*RaycastHit hit;
             if (Physics.BoxCast(transform.position, Vector3.one, transform.forward, out hit))
             {
                 _animatorController.SetTrigger("pass");
@@ -78,9 +89,42 @@ public class Actions : MonoBehaviour
             else
             {
                 Debug.Log("nessuno colpito");
-            }
+            }*/
         }
-        
+        else if (Input.GetMouseButtonUp(0) && _ballCatched)
+        {
+            //passa il pallone nella direzione del player
+            //riattiva il movimento
+            //riattiva le coroutine in pausa
+            //Debug.Log("passa il pallone nella direzione");
+
+
+            RaycastHit hit;
+            Ray ray = GameObject.Find("CameraBiliardino").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                //Debug.Log("passa il pallone nella posizione " + hit.point);
+                _animatorController.SetTrigger("pass");
+                //Debug.Log("Passa il pallone a " + hit.collider.transform.parent.name);
+                GameObject ball = GetComponentInChildren<Ball>().gameObject;
+                //GameObject target = hit.collider.transform.parent.gameObject;
+                
+                ball.GetComponent<Ball>().StartPassBallTo(hit.point);
+                ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
+                gameObject.GetComponent<FirstPersonController>().SetBall(null);
+                _ballCatched = false;
+                GameObject.Find("Controller").GetComponent<ActionsController>().AddTargetInRecordingForTheBall(ball, gameObject.GetComponent<Player>().id, gameObject.GetComponent<Player>().tag);
+            }
+
+            gameObject.GetComponent<FirstPersonController>().enabled = true;
+            ActionsController.pause = false;
+            GameEvent.isBiliardinoOpen = false;
+            gameObject.GetComponentInChildren<Camera>().enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
     }
 
     private bool _hasCollide = false;
@@ -92,7 +136,7 @@ public class Actions : MonoBehaviour
             {
                 Debug.Log("collisione con " + other.transform.parent.name);
                 other.gameObject.GetComponentInParent<AnimatorController>().SetTrigger("afterTackle");
-                
+                other.gameObject.GetComponentInParent<FirstPersonController>().isOnFoot = false;
                 _hasCollide = true;
                 StartCoroutine(ResetCollision());
             }
@@ -104,5 +148,15 @@ public class Actions : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         _hasCollide = false;
+    }
+
+    public void SetBallCatched(bool value)
+    {
+        this._ballCatched = value;
+    }
+
+    public bool GetBallCatched()
+    {
+        return _ballCatched;
     }
 }

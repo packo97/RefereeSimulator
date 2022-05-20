@@ -25,6 +25,8 @@ public class FirstPersonController : MonoBehaviour
     private AnimatorController _animatorController;
 
     private Ball _ball;
+
+    public bool isOnFoot;
     
     void Start()
     {
@@ -32,6 +34,7 @@ public class FirstPersonController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         _animatorController = GetComponent<AnimatorController>();
         _ball = null;
+        isOnFoot = true;
     }
 
     void Update()
@@ -79,35 +82,42 @@ public class FirstPersonController : MonoBehaviour
 
         // Move the controller
         _moveDirection *= Time.deltaTime;
-        _characterController.Move(_moveDirection);
 
-        // Player and Camera rotation
-        if (canMove)
+        if (isOnFoot)
         {
-            _rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            _rotationX = Mathf.Clamp(_rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        }
+            _characterController.Move(_moveDirection);
+            
+            // Player and Camera rotation
+            if (canMove)
+            {
+                _rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+                _rotationX = Mathf.Clamp(_rotationX, -lookXLimit, lookXLimit);
+                playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
+                transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            }
 
         
-        if (_moveDirection.x != 0 || _moveDirection.z != 0)
-        {
-            _animatorController.SetParameter("running", true);
-            if (_ball != null)
+            if (_moveDirection.x != 0 || _moveDirection.z != 0)
             {
-                _ball.StartBallRotation();
-            }
+                _animatorController.SetParameter("running", true);
+                if (_ball != null)
+                {
+                    _ball.StartBallRotation();
+                }
                
-        }
-        else
-        {
-            _animatorController.SetParameter("running", false);
-            if (_ball != null)
+            }
+            else
             {
-                _ball.SetBallRotation(false);
+                _animatorController.SetParameter("running", false);
+                if (_ball != null)
+                {
+                    _ball.SetBallRotation(false);
+                }
             }
         }
+            
+
+        
 
     }
 
@@ -123,23 +133,35 @@ public class FirstPersonController : MonoBehaviour
 
     public void ReplayMove(Vector3 movement)
     {
-        _characterController.Move(movement);
-        if (movement.x != 0 || movement.z != 0)
+        _characterController = GetComponent<CharacterController>();
+        _animatorController = GetComponent<AnimatorController>();
+
+        if (isOnFoot)
         {
-            _animatorController.SetParameter("running", true);
-            if (_ball != null)
+            _characterController.Move(movement);
+            if (movement.x != 0 || movement.z != 0)
             {
-                _ball.StartBallRotation();
-            }
+                _animatorController.SetParameter("running", true);
+                if (_ball != null)
+                {
+                    _ball.StartBallRotation();
+                }
                
+            }
+            else
+            {
+                _animatorController.SetParameter("running", false);
+                if (_ball != null)
+                {
+                    _ball.SetBallRotation(false);
+                }
+            }
         }
         else
         {
             _animatorController.SetParameter("running", false);
-            if (_ball != null)
-            {
-                _ball.SetBallRotation(false);
-            }
         }
+            
+        
     }
 }

@@ -172,10 +172,10 @@ public class EditorMenu : MonoBehaviour
         Referee referee = FindReferee();
         if (referee != null)
         {
-            Destroy(FindReferee().gameObject);
+            Destroy(referee.gameObject);
             GameEvent.isRefereeDropped = false;
         }
-            
+        
         
         foreach (GameObject playerA in FindAllPlayerOfTeamA())
         {
@@ -199,6 +199,8 @@ public class EditorMenu : MonoBehaviour
     private ArrayList FindAllPlayerOfTeamA()
     {
         ArrayList teamA = new ArrayList(GameObject.FindGameObjectsWithTag("PlayerA"));
+        foreach(GameObject gobj in teamA)
+            Debug.Log(gobj.name + " " + gobj.tag);
         return teamA;
     }
     

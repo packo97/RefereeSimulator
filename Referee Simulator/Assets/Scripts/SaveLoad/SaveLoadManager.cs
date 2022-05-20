@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -31,11 +32,12 @@ public static class SaveLoadManager
         
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
-
-        ArrayList obj = GetAllElementToSave();
+        
+        List<(Transform, int)> obj = GetAllElementToSave();
         ArrayList icons = GetAllIconsToSave();
         bool refereeDropped = IsRefereeDropped();
-        ElementData data = new ElementData(obj, icons, name, category, author, difficulty, answer, reason, state, filename, refereeDropped);
+        ArrayList recording = GetAllRecordingToSave();
+        ElementData data = new ElementData(obj, icons, name, category, author, difficulty, answer, reason, state, filename, refereeDropped, recording);
         formatter.Serialize(stream, data);
         stream.Close();
         return true;
@@ -72,13 +74,16 @@ public static class SaveLoadManager
         return false;
     }
     
-    private static ArrayList GetAllElementToSave()
+    private static List<(Transform, int)> GetAllElementToSave()
     {
         GameObject contenitoreElementiInseriti = GameObject.Find("ElementiInseriti");
-        ArrayList elementiInseriti = new ArrayList();
+        List<(Transform, int)> elementiInseriti = new List<(Transform, int)>();
         for(int i = 0; i < contenitoreElementiInseriti.transform.childCount; ++i){
             Transform child = contenitoreElementiInseriti.transform.GetChild(i);
-            elementiInseriti.Add(child);
+            int id = 0;
+            if (contenitoreElementiInseriti.transform.GetChild(i).GetComponent<Player>())
+                id = contenitoreElementiInseriti.transform.GetChild(i).GetComponent<Player>().id;
+            elementiInseriti.Add((child, id));
         }
         
 
@@ -105,6 +110,11 @@ public static class SaveLoadManager
 
         return iconeInserite;
 
+    }
+
+    private static ArrayList GetAllRecordingToSave()
+    {
+        return GameObject.Find("Controller").GetComponent<ActionsController>().GetAllActionsRegistered();
     }
 
     public static void DeleteSimulation(string codice)

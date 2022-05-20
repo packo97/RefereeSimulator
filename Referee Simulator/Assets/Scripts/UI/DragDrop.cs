@@ -8,7 +8,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     [SerializeField] private Camera cameraBiliardino;
     [SerializeField] private GameObject objPrefab;
     [SerializeField] private GameObject directionPrefab;
-    [SerializeField] private GameObject details;
+    [SerializeField] private GameObject actionMenu;
     
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
@@ -21,8 +21,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
+        actionMenu = GameObject.Find("ComandiCameraBiliardino").GetComponentInChildren<ActionsMenu>(true).gameObject;
 
-       
     }
 
     private void Start()
@@ -97,6 +97,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 gameObject.transform.SetParent(GameObject.Find("IconeInserite").transform);
                 /*if (directionPrefab != null)
                     Instantiate(directionPrefab, gameObject.transform);*/
+                
+                if (obj.GetComponent<Player>() != null)
+                    obj.GetComponent<Player>().id = GameObject.Find("Controller").GetComponent<PitchController>().GetNumberOfElement(obj.tag);
             }
             else
             {
@@ -154,8 +157,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         if (_isDropped)
         {
             PosizionamentoMenu.SetCurrentElementSelected(obj);
-            details.GetComponent<ActionsMenu>().SetElement(obj);
-            details.GetComponent<ActionsMenu>().SetText("selezionato...");
+            actionMenu.GetComponent<ActionsMenu>().SetElement(obj);
+            actionMenu.GetComponent<ActionsMenu>().SetText("selezionato...");
         }
         
     }

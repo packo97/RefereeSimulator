@@ -1286,9 +1286,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7966944154923982415}
+  - component: {fileID: 3894495080986598307}
   m_Layer: 0
   m_Name: mixamorig5:Hips
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1310,6 +1311,19 @@ Transform:
   m_Father: {fileID: 5967773231208692153}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3894495080986598307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471309200746087877}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.75, z: 0.5}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!1 &3511287093774386195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,6 +2282,10 @@ GameObject:
   - component: {fileID: 3312571981762495303}
   - component: {fileID: 9181257470472803330}
   - component: {fileID: 5823517240322902943}
+  - component: {fileID: 6583320075561068383}
+  - component: {fileID: 2450726573274043765}
+  - component: {fileID: 6130922181716669158}
+  - component: {fileID: 3446157683091957321}
   m_Layer: 0
   m_Name: FootballPlayerA
   m_TagString: PlayerA
@@ -2347,6 +2365,65 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
+--- !u!95 &6583320075561068383
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456502212992901891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 698e9d6bb3c2bb1e5b18a281ec0e349e, type: 3}
+  m_Controller: {fileID: 9100000, guid: ee44492823f997dceabf1fcfd0b765a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2450726573274043765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456502212992901891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba4716fa98725eba91fe3a269ca9888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6130922181716669158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456502212992901891}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d188b0313bcbf309847d29fa0ab540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &3446157683091957321
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6456502212992901891}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6529602895721779170
 GameObject:
   m_ObjectHideFlags: 0

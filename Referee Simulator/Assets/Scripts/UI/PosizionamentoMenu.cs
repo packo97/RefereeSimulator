@@ -69,9 +69,9 @@ public class PosizionamentoMenu : MonoBehaviour
        currentElementSelected = selected;
    }
 
-   public static GameObject GetCurrentElementSelected()
+   public static ref GameObject GetCurrentElementSelected()
    {
-       return currentElementSelected;
+       return ref currentElementSelected;
    }
 
    public void SetActionsOfSelectedPlayer()
@@ -82,18 +82,31 @@ public class PosizionamentoMenu : MonoBehaviour
 
    public static List<GameObject> GetAllElementsRecordable()
    {
+       bool ballFound = false;
        GameObject elementiInseriti = GameObject.Find("ElementiInseriti");
        List<GameObject> list = new List<GameObject>();
        for (int i = 0; i < elementiInseriti.transform.childCount; ++i)
        {
            if (elementiInseriti.transform.GetChild(i).tag.Equals("PlayerA") ||
-               elementiInseriti.transform.GetChild(i).tag.Equals("PlayerB"))
+               elementiInseriti.transform.GetChild(i).tag.Equals("PlayerB") ||
+               elementiInseriti.transform.GetChild(i).tag.Equals("Ball"))
            {
                list.Add(elementiInseriti.transform.GetChild(i).gameObject);
            }
+
+           if (elementiInseriti.transform.GetChild(i).tag.Equals("Ball"))
+               ballFound = true;
+       }
+
+       if (!ballFound)
+       {
+           Ball ball = elementiInseriti.GetComponentInChildren<Ball>();
+           if (ball != null)
+               list.Add(ball.gameObject);
        }
 
        return list;
-   } 
+   }
+   
    
 }

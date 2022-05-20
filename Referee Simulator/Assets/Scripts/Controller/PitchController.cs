@@ -9,7 +9,7 @@ public class PitchController : MonoBehaviour
     [SerializeField] private GameObject _elementiInseriti;
     [SerializeField] private GameObject _iconeInserite;
     
-
+    
 
     public void LoadElementsInThePitch()
     {
@@ -37,11 +37,13 @@ public class PitchController : MonoBehaviour
             GameObject instance = Instantiate(Resources.Load(pathPrefab) as GameObject, _elementiInseriti.transform);
             instance.transform.position = new Vector3(element.positionX, element.positionY, element.positionZ);
             instance.transform.eulerAngles = new Vector3(element.rotationX, element.rotationY, element.rotationZ);
-            
+            if (instance.GetComponent<Player>())
+                instance.GetComponent<Player>().id = element.id;
             /*
              * Carica sul terreno di gioco le icone corrispondenti agli elementi della simulazione selezionata
              * 
              */
+            
             GameObject iconInstance = Instantiate(iconElementPrefab, _iconeInserite.transform);
             iconInstance.transform.position =
                 new Vector3(element.iconPositionX, element.iconPositionY, element.iconPositionZ);
@@ -57,7 +59,7 @@ public class PitchController : MonoBehaviour
                 if (element.type.Equals("Ball") && rt.gameObject != iconInstance.gameObject)
                     Destroy(rt.gameObject);
                     
-            }   
+            }
             
             string iconPath = "";
             if (element.type.Equals("Referee"))
@@ -76,9 +78,71 @@ public class PitchController : MonoBehaviour
             
             if (element.type.Equals("Referee"))
                 GameEvent.isRefereeDropped = true;
+            
+            
+            GameObject.Find("Controller").GetComponent<ActionsController>().SetActionsRegistered(_elementData.recording);
         }
         
         
+    }
+
+    public int GetNumberOfElement(string tag)
+    {
+        int count = 0;
+        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        {
+            if (_elementiInseriti.transform.GetChild(i).tag.Equals(tag))
+                count++;
+        }
+
+        return count;
+    }
+
+    public GameObject GetElementFromID(int id, string tag)
+    {
+        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        {
+            GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
+            if (element.GetComponent<Player>())
+            {
+                if (element.tag.Equals(tag) && element.GetComponent<Player>().id == id)
+                {
+                    return element;
+                } 
+            }
+            else if (element.GetComponent<Ball>())
+            {
+                if (element.tag.Equals(tag))
+                    return element;
+            }
+
+            if (element.GetComponentInChildren<Ball>())
+            {
+                GameObject ball = element.GetComponentInChildren<Ball>().gameObject;
+                if (ball.tag.Equals(tag))
+                    return ball;
+            }
+            
+                
+        }
+        
+        
+
+        return null;
+    }
+
+    public GameObject GetBall()
+    {
+        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        {
+            GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
+            if (element.tag.Equals("Ball"))
+            {
+                return element;
+            }
+        }
+
+        return null;
     }
 
 }

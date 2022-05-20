@@ -23,6 +23,8 @@ public class AnimatorController : MonoBehaviour
            azione = ActionsController.Azione.FALLEN_AFTER_TACKLE;
        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("pass"))
            azione = ActionsController.Azione.PASS_BALL;
+       else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("receive"))
+           azione = ActionsController.Azione.RECEIVE_BALL;
        
        //Debug.Log(azione + " " + gameObject.name);
    }
@@ -53,6 +55,9 @@ public class AnimatorController : MonoBehaviour
        
        if (azione == ActionsController.Azione.PASS_BALL)
            _animator.SetTrigger("pass");
+       
+       if (azione == ActionsController.Azione.RECEIVE_BALL)
+           _animator.SetTrigger("receive");
        
    }
 

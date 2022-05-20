@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //This script is used to identify the Player
+
+    public int id;
     
-    
+
 }

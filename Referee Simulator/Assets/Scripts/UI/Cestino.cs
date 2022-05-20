@@ -7,7 +7,7 @@ public class Cestino : MonoBehaviour, IDropHandler
     {
         GameObject obj = eventData.pointerDrag;
         GameObject elementInThePitch = obj.GetComponent<DragDrop>().GetElementInThePitch();
-        GameObject.Find("Controller").GetComponent<ActionsController>().RemoveRecording(elementInThePitch);
+        GameObject.Find("Controller").GetComponent<ActionsController>().RemoveAllRecordingsFor(elementInThePitch);
         Destroy(elementInThePitch);
         Destroy(obj);
         

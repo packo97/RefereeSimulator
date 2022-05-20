@@ -584,6 +584,10 @@ GameObject:
   - component: {fileID: 5776404716743616346}
   - component: {fileID: 6186029841321171066}
   - component: {fileID: 1514691521331179685}
+  - component: {fileID: 8146243338564503904}
+  - component: {fileID: 2153694043261603941}
+  - component: {fileID: 2600058145042177841}
+  - component: {fileID: 8632211355849019245}
   m_Layer: 0
   m_Name: FootballPlayerB
   m_TagString: PlayerB
@@ -663,6 +667,65 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
+--- !u!95 &8146243338564503904
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615304235982407454}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 698e9d6bb3c2bb1e5b18a281ec0e349e, type: 3}
+  m_Controller: {fileID: 9100000, guid: ee44492823f997dceabf1fcfd0b765a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2153694043261603941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615304235982407454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba4716fa98725eba91fe3a269ca9888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2600058145042177841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615304235982407454}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d188b0313bcbf309847d29fa0ab540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &8632211355849019245
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2615304235982407454}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2655814104845549049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,9 +1659,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1387445862009354834}
+  - component: {fileID: 6722037603190061906}
   m_Layer: 0
   m_Name: mixamorig5:Hips
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1620,6 +1684,19 @@ Transform:
   m_Father: {fileID: 3386915775586377124}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6722037603190061906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5619901369298018776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.8, z: 0.5}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!1 &5921842459359184277
 GameObject:
   m_ObjectHideFlags: 0

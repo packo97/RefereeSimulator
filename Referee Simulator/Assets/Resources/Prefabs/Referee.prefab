@@ -2392,6 +2392,8 @@ GameObject:
   - component: {fileID: 1882523938547830251}
   - component: {fileID: 4392357715042829326}
   - component: {fileID: 661025027226664356}
+  - component: {fileID: 7045920459906028258}
+  - component: {fileID: 4716779343620557982}
   m_Layer: 0
   m_Name: Referee
   m_TagString: Referee
@@ -2471,6 +2473,37 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
+--- !u!114 &7045920459906028258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945077245305597359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba4716fa98725eba91fe3a269ca9888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &4716779343620557982
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7945077245305597359}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 698e9d6bb3c2bb1e5b18a281ec0e349e, type: 3}
+  m_Controller: {fileID: 9100000, guid: ee44492823f997dceabf1fcfd0b765a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7985621196076914504
 GameObject:
   m_ObjectHideFlags: 0

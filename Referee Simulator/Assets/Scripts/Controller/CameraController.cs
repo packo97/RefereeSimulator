@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
         
         if (GameEvent.isBiliardinoOpen && !GameEvent.isSimulationOpen)
         {
+            _biliardinoCamera.gameObject.SetActive(true);
             _biliardinoCamera.depth = 0;
             _freeCamera.depth = -1;
             if(GameObject.FindWithTag("Referee")!=null)
