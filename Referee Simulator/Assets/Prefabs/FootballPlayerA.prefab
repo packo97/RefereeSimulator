@@ -2366,6 +2366,7 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
+  isOnFoot: 1
 --- !u!95 &6583320075561068383
 Animator:
   serializedVersion: 3

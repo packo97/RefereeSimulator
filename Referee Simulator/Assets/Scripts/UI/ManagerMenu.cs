@@ -121,6 +121,8 @@ public class ManagerMenu : MonoBehaviour
             FindReferee().GetComponent<FirstPersonController>().enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            GameObject.Find("Controller").GetComponent<ActionsController>().StartReplay();
+            
         }
         else
         {
@@ -128,12 +130,15 @@ public class ManagerMenu : MonoBehaviour
         }
         _exitButton.gameObject.SetActive(true);
     }
-
+    
+    
     public void CloseSimulation()
     {
         GameEvent.isSimulationOpen = false;
         _exitButton.gameObject.SetActive(false);
-        FindReferee().GetComponent<FirstPersonController>().enabled = false;
+        Referee referee = FindReferee();
+        if (referee != null)
+            referee.GetComponent<FirstPersonController>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

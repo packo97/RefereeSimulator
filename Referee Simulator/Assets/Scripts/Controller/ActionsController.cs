@@ -87,10 +87,10 @@ public class ActionsController : MonoBehaviour
                 indexNextTarget = 0;*/
             //Debug.Log("get next target " + targets_kicker[indexNextTarget] + "indice " + indexNextTarget);
             //return targets_kicker[indexNextTarget++].Item1;
-            Debug.Log("kicker id " + kickerID + "count: " +  targets_kickerID.Count);
+            //Debug.Log("kicker id " + kickerID + "count: " +  targets_kickerID.Count);
             foreach (TargetForElement i in  targets_kickerID)
             {
-                Debug.Log("il target è" + i.target.GetVector3() + " " + i.alreadyUsed);
+                //Debug.Log("il target è" + i.target.GetVector3() + " " + i.alreadyUsed);
                 if (i.elementIdentifier.id == kickerID && i.elementIdentifier.tag.Equals(kickerTag) && !i.alreadyUsed)
                 {
                     i.alreadyUsed = true;
@@ -457,9 +457,17 @@ public class ActionsController : MonoBehaviour
 
     public void StartReplay()
     {
+        StartCoroutine(CoroutineReplay());
+        
+    }
+
+    public IEnumerator CoroutineReplay()
+    {
+        yield return new WaitForSeconds(2);
         foreach (RecordData rd in recording)
         {
-            StartCoroutine(Replay(rd));
+            if (rd.codice == 0 && rd.valid)
+                StartCoroutine(Replay(rd));
         }
     }
     
@@ -474,21 +482,20 @@ public class ActionsController : MonoBehaviour
         GameObject ball = GameObject.Find("Controller").GetComponent<PitchController>().GetBall();
         
         while (i<rd.movements.Count && !GameEvent.stopAllCoroutines)
-        //for (int i = 0; i < rd.movements.Count; i++)
         {
-            if (!pause)
+            if (!pause && el != null)
             {
                 //rd.element.GetComponent<CharacterController>().Move(rd.movements[i]);
+                //Debug.Log(rd.id_element + " " + rd.actions[i]);
                 
-                el.GetComponent<FirstPersonController>().ReplayMove(rd.movements[i].GetVector3());
-                el.transform.eulerAngles = rd.angles[i].GetVector3();
-
+                
+                
                 if (rd.actions[i] == Azione.TACKLE && rd.actions[i-1] != Azione.TACKLE)
                 {
                     //Debug.Log("TACKLE");
                     el.GetComponent<AnimatorController>().SetParameter((Azione)rd.actions[i], true);
                 }
-
+                
                 if (rd.actions[i] == Azione.RECEIVE_BALL && rd.actions[i - 1] != Azione.RECEIVE_BALL)
                 {
                     //Debug.Log("RECEIVE THE BALL");
@@ -503,20 +510,7 @@ public class ActionsController : MonoBehaviour
                         else
                             ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                     }
-                    /*
-                    if(ball!=null)
-                        foreach (RecordData rdBall in recording)
-                        {
-                            if (ball.tag.Equals(rdBall.tag_element) && rdBall.codice == rd.codice)
-                            {
-                                //Debug.Log("aggiungi il pallone nella hierarchy dell'elemento");
-                                if (!ballCatched)
-                                    ball.transform.SetParent(el.transform);
-                                else
-                                    ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
-                            }
-                        }
-                    */
+                   
                     el.GetComponent<Actions>().SetBallCatched(!ballCatched);
                 }
                 
@@ -530,38 +524,26 @@ public class ActionsController : MonoBehaviour
                     ball.GetComponent<Ball>().StartPassBallTo(nextTarget);
                     ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                     
-                    /*
-                    foreach (RecordData rdBall in recording)
-                    {
-                        if (ball.tag.Equals(rdBall.tag_element) && rdBall.codice == rd.codice)
-                        {
-                            //Debug.Log("fai partire il pallone verso la posizione registrata");
-                            Vector3 nextTarget = rdBall.GetNextTargetForKicker(el.GetComponent<Player>().id, el.GetComponent<Player>().tag);
-                            ball.GetComponent<Ball>().StartPassBallTo(nextTarget);
-                            ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
-                            //rdBall.element.GetComponent<Ball>().StartPassBallTo(rdBall.finalPosition);
-                        }
-                    }*/
+                   
                 }
-            
-                //Per ora commentato
-                /*
-                if (!(rd.actions[i] == Azione.TACKLE && rd.actions[i-1] == Azione.TACKLE))
-                {
-                    rd.element.GetComponent<AnimatorController>().SetParameter((Azione) rd.actions[i], true);
-                }
-                */
-                //Debug.Log(rd.actions[i]); 
 
-                i++;
+                
+                el.GetComponent<FirstPersonController>().ReplayMove(rd.movements[i].GetVector3());
+                el.transform.eulerAngles = rd.angles[i].GetVector3();
+                
+                
+                
             }
             else
             {
                 Debug.Log("coroutine bloccata");
             }
 
+            i++;
             yield return null;
         }
+        
+        
         coroutineReplayStarted = false;
     
         RecordData nextRecordData = NextRecording(rd);
@@ -605,11 +587,10 @@ public class ActionsController : MonoBehaviour
         List<GameObject> allElementsRecordable = PosizionamentoMenu.GetAllElementsRecordable();
         foreach (GameObject elementRec in allElementsRecordable)
         {
-            int id_elementRec;
+            int id_elementRec = 0;
             if (elementRec.GetComponent<Player>())
                 id_elementRec = elementRec.GetComponent<Player>().id;
-            else
-                id_elementRec = 0;
+            
             string tag_elementRec = elementRec.tag;
             for (int i = 0; i < recording.Count; i++)
             {
@@ -635,12 +616,13 @@ public class ActionsController : MonoBehaviour
                         elementRec.GetComponent<FirstPersonController>().isOnFoot = true;
                     }
                         
-
+                    /*
                     if (elementRec.GetComponent<Ball>())
                     {
                         rd.SetNextTarget(0);
                         elementRec.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                     }
+                    */
 
                     if (elementRec.GetComponent<Actions>())
                     {
@@ -649,7 +631,12 @@ public class ActionsController : MonoBehaviour
                     }
 
                     if (ball != null)
+                    {
+                        ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                         ball.transform.position = rd.initialPositionBall.GetVector3();
+                        rd.SetNextTarget(0);
+                    }
+                        
                 }
             }
             

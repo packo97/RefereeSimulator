@@ -30,6 +30,7 @@ public class UIController : MonoBehaviour
                 if (GameEvent.isManagerOpen)
                 {
                     CloseSimulationFromManager();
+                    GameEvent.stopAllCoroutines = true;
                     _editorMenu.DestroyAllElementsInserted();
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
@@ -86,11 +87,14 @@ public class UIController : MonoBehaviour
     public void OpenSimulationFromManager()
     {
         _managerMenu.CloseManager();
+        GetComponent<PitchController>().LoadElementsInThePitch();
         _managerMenu.PlaySimulation();
     }
-
+    
+    
     public void CloseSimulationFromManager()
     {
+        _editorMenu.DestroyAllElementsInserted();
         _managerMenu.CloseSimulation();
         _managerMenu.OpenManager();
         

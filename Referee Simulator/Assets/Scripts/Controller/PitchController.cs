@@ -133,6 +133,7 @@ public class PitchController : MonoBehaviour
 
     public GameObject GetBall()
     {
+        /*
         for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
         {
             GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
@@ -140,8 +141,12 @@ public class PitchController : MonoBehaviour
             {
                 return element;
             }
-        }
+        }*/
 
+        Ball ball = _elementiInseriti.GetComponentInChildren<Ball>();
+        if (ball != null )
+            return ball.gameObject;
+        
         return null;
     }
 
