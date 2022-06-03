@@ -8,8 +8,78 @@ public class PitchController : MonoBehaviour
 {
     [SerializeField] private GameObject _elementiInseriti;
     [SerializeField] private GameObject _iconeInserite;
-    
-    
+
+
+    public List<GameObject> GetAllElementsInThePitch()
+    {
+        List<GameObject> elements = new List<GameObject>();
+        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        {
+            GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
+            if (element.GetComponent<Player>())
+                elements.Add(element);
+        }
+
+        return elements;
+    }
+
+    public void SetAllElementsToInitialPositionOfTheLayer(int layer)
+    {
+        /*
+         *  Questo metodo serve per impostare tutti gli elementi sul terreno di gioco (escluso il pallone) alla posizione
+         *  corretta in base al layer inserito come paramentro.
+         *
+         */
+        
+        //prendo tutti gli elementi sul terreno di gioco (escluso il pallone)
+        List<GameObject> elements = GetAllElementsInThePitch();
+        //prendo l'elemento selezionato nell'editor
+        GameObject currentElement = PosizionamentoMenu.GetCurrentElementSelected();
+        //inizializzo le variabili di posizione e rotazione
+        Vector3 initalPosition = Vector3.zero;
+        Vector3 initialRotation = Vector3.zero;
+        ActionsController actionsController = GetComponent<ActionsController>();
+        
+        //per ogni elemento chiedo la sua posizione
+        foreach (GameObject element in elements)
+        {
+            //se l'elemento è quello selezionato nell'editor devo prendere la posizione finale del layer precedente
+            if (element.GetComponent<Player>().id == currentElement.GetComponent<Player>().id &&
+                element.tag.Equals(currentElement.tag))
+            {
+                initalPosition = actionsController.GetFinalPositionOfTheLayer(element, layer - 1);
+                initialRotation = actionsController.GetFinalAnglesOfTheLayer(element, layer - 1);
+            }
+            // altrimenti prendo la posizione iniziale del layer passato come parametro
+            else
+            {
+                initalPosition = actionsController.GetInitialPositionOfTheLayer(element, layer);
+                initialRotation = actionsController.GetInitialAnglesOfTheLayer(element, layer);
+                // se il vector è uguale a zero, significa che non è stato trovata una registrazione per il layer passato come parametro
+                // quindi cerco dal layer passato come parametro al layer 0 e utilizzo il primo layer che restituisce una posizione diversa da 0
+                if (initalPosition == Vector3.zero)
+                {
+                    int tmp_layer = layer;
+                    while (tmp_layer >= 0)
+                    {
+                        initalPosition = actionsController.GetFinalPositionOfTheLayer(element, tmp_layer);
+                        initialRotation = actionsController.GetFinalAnglesOfTheLayer(element, tmp_layer);
+                        if (initalPosition != Vector3.zero)
+                            break;
+                        tmp_layer -= 1;
+                    }
+                    
+                }
+            }
+            //imposto la posizione solo se diversa da zero
+            if (initalPosition != Vector3.zero)
+            {
+                element.transform.position = initalPosition;
+                element.transform.eulerAngles = initialRotation;
+            }
+            
+        }
+    }
 
     public void LoadElementsInThePitch()
     {

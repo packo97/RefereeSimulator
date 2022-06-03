@@ -98,7 +98,6 @@ public class Actions : MonoBehaviour
             //riattiva le coroutine in pausa
             //Debug.Log("passa il pallone nella direzione");
 
-
             RaycastHit hit;
             Ray ray = GameObject.Find("CameraBiliardino").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
@@ -134,7 +133,7 @@ public class Actions : MonoBehaviour
         {
             if (gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.TACKLE && !ReferenceEquals(gameObject, other.transform.parent.gameObject))
             {
-                Debug.Log("collisione con " + other.transform.parent.name);
+                //Debug.Log("collisione con " + other.transform.parent.name);
                 other.gameObject.GetComponentInParent<AnimatorController>().SetTrigger("afterTackle");
                 other.gameObject.GetComponentInParent<FirstPersonController>().isOnFoot = false;
                 _hasCollide = true;

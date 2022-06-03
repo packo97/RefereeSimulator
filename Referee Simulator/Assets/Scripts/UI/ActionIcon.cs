@@ -9,7 +9,7 @@ public class ActionIcon : MonoBehaviour
    private int numero;
    private EditorMenu editorMenu;
    private Image _image;
-   private ActionsController.RecordData rd;
+   private RecordData rd;
    private void Start()
    {
       numero = Int32.Parse(gameObject.name.Substring(gameObject.name.Length - 1, 1));
@@ -32,7 +32,7 @@ public class ActionIcon : MonoBehaviour
    {
       if (rd == null || rd.valid)
       {
-         ActionsController.codice = numero;
+         ActionsController.layer = numero;
          editorMenu.SetActions(numero);
       }
 

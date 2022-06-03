@@ -86,6 +86,7 @@ public class EditorMenu : MonoBehaviour
             }
                 
         }
+        
     }
 
     public void OpenComandiPosizionamento()
@@ -224,6 +225,7 @@ public class EditorMenu : MonoBehaviour
         cameraButton.gameObject.SetActive(false);
         confermaButton.gameObject.SetActive(false);
         closeButton.gameObject.SetActive(false);
+        
         //_posizionamentoMenu.SetActionsOfSelectedPlayer();
         
         actionMenu.OpenActionMode(numero);

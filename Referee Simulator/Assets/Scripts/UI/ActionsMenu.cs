@@ -92,19 +92,36 @@ public class ActionsMenu : MonoBehaviour
     {
         if (numero > 0)
         {
+            GameObject.Find("Controller").GetComponent<PitchController>().SetAllElementsToInitialPositionOfTheLayer(numero);
+            
+            /*
             Vector3 initialPosition = GameObject.Find("Controller").GetComponent<ActionsController>()
                 .GetInitialPositionOfTheNextAction(_currentObjSelected);
             _currentObjSelected.transform.position = initialPosition;
             Vector3 initialAngles = GameObject.Find("Controller").GetComponent<ActionsController>()
                 .GetInitialAnglesOfTheNextAction(_currentObjSelected);
-            _currentObjSelected.transform.eulerAngles = initialAngles;
+            _currentObjSelected.transform.eulerAngles = initialAngles;*/
             //Debug.Log("initial position richiesta " + initialPosition);
 
             GameObject ball = GameObject.Find("Controller").GetComponent<PitchController>().GetBall();
-            Vector3 initialPositionBall = GameObject.Find("Controller").GetComponent<ActionsController>()
-                .GetInitialPositionBallOfTheNextAction();
-           
-            ball.transform.position = initialPositionBall;
+            
+            if (ball != null)
+            {
+                bool isBallCatched = GameObject.Find("Controller").GetComponent<ActionsController>()
+                    .IsBallCatchedOnTheLastLayer(numero).Item1;
+                if (isBallCatched)
+                {
+                    GameObject catcher = GameObject.Find("Controller").GetComponent<ActionsController>()
+                        .IsBallCatchedOnTheLastLayer(numero).Item2;
+                    ball.transform.SetParent(catcher.transform);
+                    catcher.GetComponent<Actions>().SetBallCatched(true);
+                }
+                
+                Vector3 initialPositionBall = GameObject.Find("Controller").GetComponent<ActionsController>()
+                    .GetInitialPositionBallOfTheNextAction();
+                ball.transform.position = initialPositionBall;
+            }
+            
 
         }
         
