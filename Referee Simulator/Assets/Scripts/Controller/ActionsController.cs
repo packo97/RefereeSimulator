@@ -455,10 +455,18 @@ public class ActionsController : MonoBehaviour
         recording.Clear();
     }
 
-    public void SetAllElementsToInitialPosition(int codice)
+    public void SetAllElementsToInitialPosition(int layer)
     {
+        /*
+         * Questo metodo è utilizzato per impostare gli elementi alla posizione iniziale del layer passato come parametro
+         * 
+         */
         GameObject ball = GameObject.Find("Controller").GetComponent<PitchController>().GetBall();
         List<GameObject> allElementsRecordable = PosizionamentoMenu.GetAllElementsRecordable();
+        
+        /*
+         * Per ogni elemento registrabile
+         */
         foreach (GameObject elementRec in allElementsRecordable)
         {
             int id_elementRec = 0;
@@ -466,18 +474,25 @@ public class ActionsController : MonoBehaviour
                 id_elementRec = elementRec.GetComponent<Player>().id;
             
             string tag_elementRec = elementRec.tag;
+            
+            /*
+             * Cerco all'interno delle registrazioni
+             */
             for (int i = 0; i < recording.Count; i++)
             {
+                //recupero dal record data il gameobject corrispondente utilizzando id e tag
                 RecordData rd = (RecordData) recording[i];
                 GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
                     .GetElementFromID(rd.idElement, rd.tagElement);
-                int id_el;
+                
+                int id_el = 0;
                 if (el.GetComponent<Player>())
                     id_el = el.GetComponent<Player>().id;
-                else
-                    id_el = 0;
                 string tag_el = el.tag;
-                if (id_el == id_elementRec && tag_el == tag_elementRec && rd.layer == codice)
+                
+                //se l'id e il tag sono uguali tra i due elementi e il layer corrisponde allora ho trovato
+                //il record data che contiene le informazioni che devo settare sull'elemento
+                if (id_el == id_elementRec && tag_el == tag_elementRec && rd.layer == layer)
                 {
                     //disattivo e attivo il character controller a causa di un bug interno del character controller
                     if (elementRec.GetComponent<CharacterController>())
@@ -490,17 +505,18 @@ public class ActionsController : MonoBehaviour
                         elementRec.GetComponent<FirstPersonController>().isOnFoot = true;
                     }
                     
+                    //reset delle variabili di default
                     if (elementRec.GetComponent<Actions>())
                     {
                         elementRec.GetComponent<Actions>().SetBallCatched(false);
                         elementRec.GetComponent<AnimatorController>().SetParameter(Azione.IDLE, true);
                     }
-
+                    //reset delle variabili di default per il pallone
                     if (ball != null)
                     {
                         ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                         ball.transform.position = rd.initialPositionBall.GetVector3();
-                        rd.SetNextTarget(0);
+                        
                     }
                         
                 }
@@ -511,18 +527,26 @@ public class ActionsController : MonoBehaviour
 
     public Vector3 GetInitialPositionOfTheLayer(GameObject obj, int layer)
     {
+        /*
+         * Questo metodo è utilizzato per restituire la posizione initiale di un determinato elemento in un determinato layer
+         * 
+         */
+        
         int id_obj = 0;
         if (obj.GetComponent<Player>())
             id_obj = obj.GetComponent<Player>().id;
         
+        //Cerco nelle registrazioni
         foreach (RecordData rd in recording)
         {
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
                 .GetElementFromID(rd.idElement, rd.tagElement);
+            
             int el_id = 0;
             if (el.GetComponent<Player>())
                 el_id = el.GetComponent<Player>().id;
             
+            //se id e tag sono uguali ed il layer corrisponde anche ho trovato il record data che contiene le infomrazioni
             if (el_id == id_obj && el.tag.Equals(obj.tag) && rd.layer == layer)
             {
                 if (obj.GetComponent<Player>())
@@ -534,8 +558,14 @@ public class ActionsController : MonoBehaviour
     }
     public Vector3 GetInitialAnglesOfTheLayer(GameObject obj, int layer)
     {
+        /*
+         * Questo metodo è utilizzato per restituire gli angoli di un determinato elemento in un determinato layer.
+         * 
+         */
+        
         int id_obj = obj.GetComponent<Player>().id;
         
+        //Cerco nelle registrazioni
         foreach (RecordData rd in recording)
         {
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
@@ -543,6 +573,8 @@ public class ActionsController : MonoBehaviour
             int el_id = 0;
             if (el.GetComponent<Player>())
                 el_id = el.GetComponent<Player>().id;
+            
+            //Se id e tag sono uguali e il layer corrisponde, ho trovato il record data che contiene le informazioni
             if (el_id == id_obj && el.tag.Equals(obj.tag) && rd.layer == layer)
             {
                 return rd.initialRotation.GetVector3();
@@ -553,10 +585,16 @@ public class ActionsController : MonoBehaviour
     }
     public Vector3 GetFinalPositionOfTheLayer(GameObject obj, int layer)
     {
+        /*
+         * Questo metodo è utilizzato per restituire la posizione finale di un determinato elemento in un determinato layer
+         * 
+         */
+        
         int id_obj = 0;
         if (obj.GetComponent<Player>())
             id_obj = obj.GetComponent<Player>().id;
 
+        //Cerco nelle registrazioni
         foreach (RecordData rd in recording)
         {
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
@@ -565,6 +603,7 @@ public class ActionsController : MonoBehaviour
             if (el.GetComponent<Player>())
                 el_id = el.GetComponent<Player>().id;
             
+            //se id e tag sono uguali e il layer corrisponde, ho trovato il record data che contiene le informazioni
             if (el_id == id_obj && el.tag.Equals(obj.tag) && rd.layer == layer)
             {
                 if (obj.GetComponent<Player>())
@@ -577,8 +616,13 @@ public class ActionsController : MonoBehaviour
     
     public Vector3 GetFinalAnglesOfTheLayer(GameObject obj, int layer)
     {
+        /*
+         * Questo metodo è utilizzato per restituire gli angoli di un determinato elemento in un determinato layer.
+         */
+        
         int id_obj = obj.GetComponent<Player>().id;
        
+        //Cerco nelle registrazioni
         foreach (RecordData rd in recording)
         {
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
@@ -586,6 +630,8 @@ public class ActionsController : MonoBehaviour
             int el_id = 0;
             if (el.GetComponent<Player>())
                 el_id = el.GetComponent<Player>().id;
+            
+            //se id e tag sono uguali e il layer corrisponde, ho trovato il record data che contiene le informazioni
             if (el_id == id_obj && el.tag.Equals(obj.tag) && rd.layer == layer)
             {
                 return rd.finalAngles.GetVector3();
@@ -597,10 +643,17 @@ public class ActionsController : MonoBehaviour
 
     public Vector3 GetInitialPositionBallOfTheNextAction()
     {
-        Vector3 finalPositionBall = Vector3.zero;
+        /*
+         * Questo metodo è utilizzato per ottenere la posizione iniziale del pallone nella prossima azione (ancora da registrare).
+         * Se l'azione corrente è nel layer n, verrà restituita la posizione finale del pallone nel layer n-1;
+         * 
+         */
         
+        Vector3 finalPositionBall = Vector3.zero;
+        //Cerco nelle registrazione
         foreach (RecordData rd in recording)
         {
+            //Se il layer corrisponde e la posizione finale non è nulla
             if (rd.layer == layer - 1 && rd.finalPositionBall!= null)
             {
                 finalPositionBall = rd.finalPositionBall.GetVector3();
@@ -613,9 +666,16 @@ public class ActionsController : MonoBehaviour
 
     public (bool, GameObject) IsBallCatchedOnTheLastLayer(int layer)
     {
+        /*
+         * Questo metodo è utilizzato per sapere se in un determinato layer il pallone era stato catturato.
+         * Il metodo restituisce una coppia il cui primo elemento indica se la risposta è negativa o positiva,
+         * mentre il secondo elemento indica da chi è stato catturato il pallone in quel layer.
+         */
+        
+        //Cerco nelle registrazioni
         foreach (RecordData rd in recording)
         {
-           
+           //Se il layer corrisponde e il pallone è stato catturato
             if (rd.layer == layer - 1 && rd.ballCatched)
             {
                 GameObject element = GetComponent<PitchController>().GetElementFromID(rd.idElement, rd.tagElement);
@@ -630,6 +690,11 @@ public class ActionsController : MonoBehaviour
 
     public bool IsRecordedTheLastAction(GameObject obj, int numero)
     {
+        /*
+         * Questo metodo è utilizzato per verificare se, per un determinato oggetto, l'ultima azione è stata registrata
+         * 
+         */
+        
         int thelastone = numero - 1;
         foreach (RecordData rd in recording)
         {
@@ -645,17 +710,27 @@ public class ActionsController : MonoBehaviour
 
     public ArrayList GetAllActionsRegistered()
     {
+        /*
+         * Questo metodo restituisce le registrazioni
+         * 
+         */
         return recording;
     }
 
     public ArrayList GetActionsRegistered(GameObject currentObjSelected)
     {
+        /*
+         * Questo metodo restituisce una lista contenente tutti i record data
+         * che riguardano l'elemento passato come parametro
+         * 
+         */
+        
         ArrayList recordingOfTheElement = new ArrayList();
         foreach (RecordData rd in recording)
         {
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
                 .GetElementFromID(rd.idElement, rd.tagElement);
-            //Debug.Log("for " + rd.element.name);
+            
             if (ReferenceEquals(el, currentObjSelected))
                 recordingOfTheElement.Add((rd));
         }
@@ -664,22 +739,30 @@ public class ActionsController : MonoBehaviour
 
     public void SetActionsRegistered(ArrayList recording)
     {
+        /*
+         * Questo metodo è utilizzato per settare la lista delle registrazione con un altra lista (serve per il LOAD SYSTEM)
+         */
         this.recording = recording;
     }
 
-    public RecordData GetAction(ref GameObject currentObjSelected, int indice)
+    public RecordData GetRecordData(ref GameObject currentObjSelected, int layer)
     {
+        /*
+         * Questo metodo è utilizzato per ottenere il RecordData di un determinato elemento in un determinato layer
+         * 
+         */
         ArrayList recordingOfTheElement = GetActionsRegistered(currentObjSelected);
         
-        if (indice < recordingOfTheElement.Count)
+        if (layer < recordingOfTheElement.Count)
         {
             foreach (RecordData rd in recordingOfTheElement)
             {
                 GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
                     .GetElementFromID(rd.idElement, rd.tagElement);
-                if (el.GetInstanceID() == currentObjSelected.GetInstanceID() && indice == rd.layer)
+                //se l'elemento ha lo stesso id e il layer corrisponde, ho trovato il record data di interesse
+                if (el.GetInstanceID() == currentObjSelected.GetInstanceID() && layer == rd.layer)
                 {
-                    return (RecordData)rd;
+                    return rd;
                 }
             }
         }
@@ -688,11 +771,16 @@ public class ActionsController : MonoBehaviour
 
     public void RemoveAllRecordingsFor(GameObject elementToRemove)
     {
+        /*
+         * Questo metodo è utilizzato per eliminare tutte le registrazioni che riguardano un determinato elemento
+         * 
+         */
         for (int i = 0; i < recording.Count; i++)
         {
             RecordData rd = (RecordData) recording[i];
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
                 .GetElementFromID(rd.idElement, rd.tagElement);
+            //se l'elemento è lo stesso, allora elimino la registrazione nella posizione i
             if (ReferenceEquals(el, elementToRemove))
                 recording.RemoveAt(i);
         }
@@ -700,6 +788,10 @@ public class ActionsController : MonoBehaviour
 
     public void RemoveRecording(RecordData recordData)
     {
+        /*
+         * Questo metodo è utilizzato per eliminare la registrazione passata come parametro
+         * 
+         */
         for (int i = 0; i < recording.Count; i++)
         {
             RecordData rd = (RecordData) recording[i];
@@ -708,24 +800,12 @@ public class ActionsController : MonoBehaviour
         }
     }
 
-    public void AddNewPossessionInRecordingForTheBall(GameObject ball)
+   public void AddTargetInRecordingForTheBall(GameObject ball, int kickerID, string kickerTag)
     {
-        foreach (RecordData rdi in recording)
-        {
-            GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()
-                .GetElementFromID(rdi.idElement, rdi.tagElement);
-            if (el != null)
-                if (el.tag.Equals("Ball"))
-                {
-                    //rdi.countChangeOwn++;
-                    return;
-                }
-               
-        }
-    }
-    
-    public void AddTargetInRecordingForTheBall(GameObject ball, int kickerID, string kickerTag)
-    {
+        /*
+         * Questo metodo è utilizzato per aggiungere un target alla lista dei target (sistema dei passaggi)
+         * 
+         */
         ElementIdentifier ei = new ElementIdentifier(kickerID, kickerTag);
         TargetForElement te = new TargetForElement(new Vector3Surrogate(ball.GetComponent<Ball>().GetTarget()), ei);
         target_kickerID_layer.Add(te);
@@ -734,6 +814,10 @@ public class ActionsController : MonoBehaviour
 
     public bool AllTheActionsValid(GameObject currentObjSelected)
     {
+        /*
+         * Questo metodo è utilizzato per verificare se tutte le azioni sono valide per un determinato elemento
+         * 
+         */
         foreach (RecordData rdi in recording)
         {
             GameObject el = GameObject.Find("Controller").GetComponent<PitchController>()

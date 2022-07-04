@@ -47,14 +47,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Controller\RecordData.cs" />
-     <Compile Include="Assets\Scripts\TaskManager.cs" />
      <Compile Include="Assets\Scripts\Test\DoPass.cs" />
      <Compile Include="Assets\Scripts\UI\ManagerMenu.cs" />
      <Compile Include="Assets\Scripts\Controller\PitchController.cs" />
      <Compile Include="Assets\Scripts\Actions.cs" />
      <Compile Include="Assets\Scripts\UI\ComandoEditor.cs" />
      <Compile Include="Assets\Scripts\Test\Punch.cs" />
+     <Compile Include="Assets\Scripts\TaskManager.cs" />
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\Controller\GameEvent.cs" />
      <Compile Include="Assets\Scripts\Controller\UIController.cs" />
@@ -69,6 +68,7 @@
      <Compile Include="Assets\Scripts\UI\EditorMenu.cs" />
      <Compile Include="Assets\Scripts\Test\passBehaviour.cs" />
      <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Controller\RecordData.cs" />
      <Compile Include="Assets\Scripts\UI\DragDrop.cs" />
      <Compile Include="Assets\Scripts\SaveLoad\ElementData.cs" />
      <Compile Include="Assets\Scripts\UI\HomeEducatore.cs" />

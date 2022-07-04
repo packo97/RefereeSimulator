@@ -16,27 +16,26 @@ using UnityEngine;
         
         public Vector3Surrogate initialPosition;
         public Vector3Surrogate initialRotation;
-        
-        public List<TargetForElement> targetsKickerID;
-        //public ElementIdentifier kickerID;
         public Vector3Surrogate finalPosition;
         public Vector3Surrogate finalAngles;
-
+        
+        //public ElementIdentifier kickerID;
+        
         public Vector3Surrogate initialPositionBall;
         public Vector3Surrogate finalPositionBall;
         public bool ballCatched;
+        public List<TargetForElement> targetsKickerID;
         
         public RecordData(GameObject element)
         {
             valid = true;
             layer = ActionsController.layer;
-            //this.element = element;
+
+            idElement = 0;
             if (element.GetComponent<Player>())
                 idElement = element.GetComponent<Player>().id;
-            else
-                idElement = 0;
-            
             tagElement = element.tag;
+            
             movements = new List<Vector3Surrogate>();
             angles = new List<Vector3Surrogate>();
             actions = new List<ActionsController.Azione>();
@@ -46,17 +45,14 @@ using UnityEngine;
             targetsKickerID = new List<TargetForElement>();
             ballCatched = false;
         }
-
-        private int indexNextTarget = 0;
-        public int countChangeOwn = 0;
         
-        public void SetNextTarget(int index)
-        {
-            indexNextTarget = index;
-        }
         
         public Vector3 GetNextTargetForKicker(int kickerID, string kickerTag)
         {
+            /*
+             * Questo metodo è utilizzato per restituire il target di un determinato passaggio dato un determinato calciatore
+             * 
+             */
             foreach (TargetForElement i in  targetsKickerID)
             {
                 if (i.elementIdentifier.id == kickerID && i.elementIdentifier.tag.Equals(kickerTag) && !i.alreadyUsed)
@@ -71,6 +67,10 @@ using UnityEngine;
 
         public void ResetTargetForKicker()
         {
+            /*
+             * Resetto tutti i target
+             * 
+             */
             foreach (TargetForElement i in targetsKickerID)
             {
                 i.alreadyUsed = false;
@@ -94,7 +94,7 @@ using UnityEngine;
 
         public void SetTargetsKicker(List<TargetForElement> targets_kicker)
         {
-            this.targetsKickerID = targets_kicker;
+            targetsKickerID = targets_kicker;
         }
 
         public void SetFinalPosition(Vector3Surrogate finalPosition)

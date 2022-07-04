@@ -200,8 +200,6 @@ public class EditorMenu : MonoBehaviour
     private ArrayList FindAllPlayerOfTeamA()
     {
         ArrayList teamA = new ArrayList(GameObject.FindGameObjectsWithTag("PlayerA"));
-        foreach(GameObject gobj in teamA)
-            Debug.Log(gobj.name + " " + gobj.tag);
         return teamA;
     }
     

@@ -1,26 +1,26 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PitchController : MonoBehaviour
 {
-    [SerializeField] private GameObject _elementiInseriti;
-    [SerializeField] private GameObject _iconeInserite;
+    [SerializeField] private GameObject elementiInseriti;
+    [SerializeField] private GameObject iconeInserite;
 
-
-    public List<GameObject> GetAllElementsInThePitch()
+    private List<GameObject> GetAllPlayersInThePitch()
     {
-        List<GameObject> elements = new List<GameObject>();
-        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        /*
+         * Questo metodo restutisce solo i calciatori presenti sul terreno di gioco
+         */
+        List<GameObject> players = new List<GameObject>();
+        for (int i = 0; i < elementiInseriti.transform.childCount; i++)
         {
-            GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
+            GameObject element = elementiInseriti.transform.GetChild(i).gameObject;
             if (element.GetComponent<Player>())
-                elements.Add(element);
+                players.Add(element);
         }
 
-        return elements;
+        return players;
     }
 
     public void SetAllElementsToInitialPositionOfTheLayer(int layer)
@@ -32,7 +32,7 @@ public class PitchController : MonoBehaviour
          */
         
         //prendo tutti gli elementi sul terreno di gioco (escluso il pallone)
-        List<GameObject> elements = GetAllElementsInThePitch();
+        List<GameObject> elements = GetAllPlayersInThePitch();
         //prendo l'elemento selezionato nell'editor
         GameObject currentElement = PosizionamentoMenu.GetCurrentElementSelected();
         //inizializzo le variabili di posizione e rotazione
@@ -104,7 +104,7 @@ public class PitchController : MonoBehaviour
             else if (element.type.Equals("Ball"))
                 pathPrefab = "Prefabs/Ball";
 
-            GameObject instance = Instantiate(Resources.Load(pathPrefab) as GameObject, _elementiInseriti.transform);
+            GameObject instance = Instantiate(Resources.Load(pathPrefab) as GameObject, elementiInseriti.transform);
             instance.transform.position = new Vector3(element.positionX, element.positionY, element.positionZ);
             instance.transform.eulerAngles = new Vector3(element.rotationX, element.rotationY, element.rotationZ);
             if (instance.GetComponent<Player>())
@@ -114,7 +114,7 @@ public class PitchController : MonoBehaviour
              * 
              */
             
-            GameObject iconInstance = Instantiate(iconElementPrefab, _iconeInserite.transform);
+            GameObject iconInstance = Instantiate(iconElementPrefab, iconeInserite.transform);
             iconInstance.transform.position =
                 new Vector3(element.iconPositionX, element.iconPositionY, element.iconPositionZ);
 
@@ -140,6 +140,8 @@ public class PitchController : MonoBehaviour
                 iconPath = "Icons/playerB";
             else if (element.type.Equals("Ball"))
                 iconPath = "Icons/ball";
+           
+                
 
             Sprite sprite = Resources.Load<Sprite>(iconPath) as Sprite;
             iconInstance.GetComponent<Image>().sprite = sprite;
@@ -149,7 +151,7 @@ public class PitchController : MonoBehaviour
             if (element.type.Equals("Referee"))
                 GameEvent.isRefereeDropped = true;
             
-            
+            //setto le azioni registrate per gli elementi caricati
             GameObject.Find("Controller").GetComponent<ActionsController>().SetActionsRegistered(_elementData.recording);
         }
         
@@ -158,10 +160,15 @@ public class PitchController : MonoBehaviour
 
     public int GetNumberOfElement(string tag)
     {
+        /*
+         * Questo metodo restituisce il numero di elementi per con lo stesso tag (il tag indica la squadra, l'arbitro o il pallone)
+         * 
+         */
+        
         int count = 0;
-        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        for (int i = 0; i < elementiInseriti.transform.childCount; i++)
         {
-            if (_elementiInseriti.transform.GetChild(i).tag.Equals(tag))
+            if (elementiInseriti.transform.GetChild(i).tag.Equals(tag))
                 count++;
         }
 
@@ -170,9 +177,14 @@ public class PitchController : MonoBehaviour
 
     public GameObject GetElementFromID(int id, string tag)
     {
-        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
+        /*
+         *  Questo metodo è utilizzato per ottenere un elemento presente sul terreno di gioco con
+         *  lo stesso id e tag passati come parametri
+         */
+        
+        for (int i = 0; i < elementiInseriti.transform.childCount; i++)
         {
-            GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
+            GameObject element = elementiInseriti.transform.GetChild(i).gameObject;
             if (element.GetComponent<Player>())
             {
                 if (element.tag.Equals(tag) && element.GetComponent<Player>().id == id)
@@ -192,32 +204,33 @@ public class PitchController : MonoBehaviour
                 if (ball.tag.Equals(tag))
                     return ball;
             }
-            
-                
         }
         
-        
-
         return null;
     }
 
     public GameObject GetBall()
     {
         /*
-        for (int i = 0; i < _elementiInseriti.transform.childCount; i++)
-        {
-            GameObject element = _elementiInseriti.transform.GetChild(i).gameObject;
-            if (element.tag.Equals("Ball"))
-            {
-                return element;
-            }
-        }*/
-
-        Ball ball = _elementiInseriti.GetComponentInChildren<Ball>();
+         * Questo metodo è utilizzato per ottenere il pallone
+         * 
+         */
+        Ball ball = elementiInseriti.GetComponentInChildren<Ball>();
         if (ball != null )
             return ball.gameObject;
         
         return null;
     }
 
+    public bool IsRefereeDropped()
+    {
+        for (int i = 0; i < elementiInseriti.transform.childCount; ++i)
+        {
+            if (elementiInseriti.transform.GetChild(i).GetComponent<Referee>())
+                return true;
+        }
+
+        return false;
+
+    }
 }

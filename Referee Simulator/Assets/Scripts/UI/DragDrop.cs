@@ -160,7 +160,6 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         {
             PosizionamentoMenu.SetCurrentElementSelected(obj);
             actionMenu.GetComponent<ActionsMenu>().SetElement(obj);
-            actionMenu.GetComponent<ActionsMenu>().SetText("selezionato...");
         }
         
     }

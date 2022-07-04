@@ -18,7 +18,7 @@ public class ActionIcon : MonoBehaviour
       GameObject currentElementSelected = PosizionamentoMenu.GetCurrentElementSelected();
       
       rd = GameObject.Find("Controller").GetComponent<ActionsController>()
-         .GetAction(ref currentElementSelected, numero);
+         .GetRecordData(ref currentElementSelected, numero);
       
       if (rd != null && !rd.valid)
          _image.color = new Color32(224,81,81,100);

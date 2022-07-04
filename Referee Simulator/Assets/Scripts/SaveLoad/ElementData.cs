@@ -7,6 +7,33 @@ public class ElementData
 {
     public string fileName;
     public bool refereeDropped;
+    public List<Element> elements;
+    public Details details;
+    public ArrayList recording;
+    
+    public ElementData(List<(Transform, int)> obj, ArrayList icons, string name, string category, string author, string difficulty, string answer, string reason, string state, string fileName, bool refereeDropped, ArrayList recording)
+    {
+        elements = new List<Element>();
+        for (int i = 0; i < obj.Count; i++)
+        {
+            RectTransform rt_icon = icons[i] as RectTransform;
+            Transform t_element = rt_icon.GetComponent<DragDrop>().GetElementInThePitch().transform;
+            int id_element = 0;
+            if (t_element.GetComponent<Player>())
+                id_element = t_element.GetComponent<Player>().id;
+            //Element el = new Element(obj[i].Item1, icons[i] as RectTransform, obj[i].Item2);
+            Element el = new Element(t_element, rt_icon, id_element);
+
+            elements.Add(el);
+        }
+        details = new Details(name, category, author, difficulty, answer, reason, state);
+        this.fileName = fileName;
+        this.refereeDropped = refereeDropped;
+
+        this.recording = recording;
+    }
+    
+    
     [System.Serializable]
     public class Element
     {
@@ -78,26 +105,5 @@ public class ElementData
             this.reason = reason;
             this.state = state;
         }
-    }
-
-    public List<Element> elements;
-    public Details details;
-
-    public ArrayList recording;
-    
-    public ElementData(List<(Transform, int)> obj, ArrayList icons, string name, string category, string author, string difficulty, string answer, string reason, string state, string fileName, bool refereeDropped, ArrayList recording)
-    {
-        elements = new List<Element>();
-        for (int i = 0; i < obj.Count; i++)
-        {
-            Element el = new Element(obj[i].Item1, icons[i] as RectTransform, obj[i].Item2);
-            elements.Add(el);
-        }
-        details = new Details(name, category, author, difficulty, answer, reason, state);
-        this.fileName = fileName;
-        this.refereeDropped = refereeDropped;
-
-        this.recording = recording;
-        Debug.Log(fileName + " " + recording.Count);
     }
 }

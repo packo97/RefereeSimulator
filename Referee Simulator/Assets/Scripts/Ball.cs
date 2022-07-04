@@ -43,11 +43,6 @@ public class Ball : MonoBehaviour
 
         _rotationStarted = false;
     }
-
-    /*public void StartPassBallTo(GameObject target)
-    {
-        StartCoroutine(PassBallTo(target));
-    }*/
     
     public void StartPassBallTo(Vector3 target)
     {

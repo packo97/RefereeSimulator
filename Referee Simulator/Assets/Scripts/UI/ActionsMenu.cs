@@ -8,7 +8,6 @@ public class ActionsMenu : MonoBehaviour
 {
     [SerializeField] private Image elementImage;
     [SerializeField] private Text playerNumber;
-    [SerializeField] private Text text;
     [SerializeField] private Rotation indicatore;
     private GameObject _currentObjSelected;
     
@@ -16,6 +15,7 @@ public class ActionsMenu : MonoBehaviour
 
     [SerializeField] private GameObject iconActionPrefab;
     private int numberOfActionInserted;
+    [SerializeField] private Text text;
     private void Start()
     {
         gameObject.SetActive(false);
@@ -23,9 +23,14 @@ public class ActionsMenu : MonoBehaviour
 
     public void SetElement(GameObject obj)
     {
+        /*
+         * Imposto l'elemento corrente
+         */
+        
         _currentObjSelected = obj;
         gameObject.SetActive(true);
         indicatore.SetElement(obj);
+        
         if (obj.tag.Equals("PlayerA"))
         {
             elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerA") as Sprite;
@@ -48,9 +53,6 @@ public class ActionsMenu : MonoBehaviour
         }
         
         //carico le icone per le corrispondenti azioni già registrate
-        /*int numberOfActionsRegistered = GameObject.Find("Controller").GetComponent<ActionsController>()
-            .GetNumberOfActionRegistered(_currentObjSelected);*/
-        //Debug.Log("numero di azioni registrate " + numberOfActionsRegistered);
         ArrayList actionRegistered = GameObject.Find("Controller").GetComponent<ActionsController>()
             .GetActionsRegistered(_currentObjSelected);
         for(int i=0; i<actionRegistered.Count; i++)
@@ -58,15 +60,20 @@ public class ActionsMenu : MonoBehaviour
             GameObject iconAction = Instantiate(iconActionPrefab, listOfActions.transform);
             iconAction.name = "action" + i;
         }
-
-
-
+        
     }
 
     public void AddAction()
     {
+        /*
+         * Aggiungo un azione, solo se le seguenti condizioni sono rispettate:
+         *  - la precedente azione è stata effettivamente registrata
+         *  - tutte le azioni dell'elemento sono valide
+         *  - il numero di azioni dell'elemento è minore di 16
+         * 
+         */
+        
         numberOfActionInserted = listOfActions.GetComponent<RectTransform>().childCount;
-        text.text = "Aggiungi azione... numero di azioni " + numberOfActionInserted;
         
         bool isRecordedTheLastAction;
         if (numberOfActionInserted == 0)
@@ -90,21 +97,19 @@ public class ActionsMenu : MonoBehaviour
     
     public void OpenActionMode(int numero)
     {
+        /*
+         *  Apro la modalità in cui è possibile compiere azioni e registrarle.
+         *  Prima di aprire però devo ripristinare la posizione e angolazione corretta di ogni elemento
+         * 
+         */
+        
+        //se sono nel caso in cui non è la prima azione (layer 0) devo preparare la scena con le corrette posizioni e angolazioni
         if (numero > 0)
         {
             GameObject.Find("Controller").GetComponent<PitchController>().SetAllElementsToInitialPositionOfTheLayer(numero);
-            
-            /*
-            Vector3 initialPosition = GameObject.Find("Controller").GetComponent<ActionsController>()
-                .GetInitialPositionOfTheNextAction(_currentObjSelected);
-            _currentObjSelected.transform.position = initialPosition;
-            Vector3 initialAngles = GameObject.Find("Controller").GetComponent<ActionsController>()
-                .GetInitialAnglesOfTheNextAction(_currentObjSelected);
-            _currentObjSelected.transform.eulerAngles = initialAngles;*/
-            //Debug.Log("initial position richiesta " + initialPosition);
-
             GameObject ball = GameObject.Find("Controller").GetComponent<PitchController>().GetBall();
             
+            //imposto posizione del pallone ed eventualmente il possessore
             if (ball != null)
             {
                 bool isBallCatched = GameObject.Find("Controller").GetComponent<ActionsController>()
@@ -121,16 +126,20 @@ public class ActionsMenu : MonoBehaviour
                     .GetInitialPositionBallOfTheNextAction();
                 ball.transform.position = initialPositionBall;
             }
-            
-
         }
         
+        //attivo la camera dell'elemento corrente
         _currentObjSelected.GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
+        //attivo la modalitò
         GameEvent.isActionOpen = true;
     }
     
     public void SetText(string testo)
     {
+        /*
+         * Imposto il testo di un Text della UI
+         * 
+         */
         text.text = testo;
     }
 }

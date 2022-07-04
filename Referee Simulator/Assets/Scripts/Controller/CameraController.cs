@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -7,8 +5,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Camera _freeCamera;
     [SerializeField] private Camera _biliardinoCamera;
 
-    [SerializeField] private GameObject elementiInseriti;
-    
     // Update is called once per frame
     void Update()
     {
@@ -16,7 +12,6 @@ public class CameraController : MonoBehaviour
          * Aggiorna la camera in base alla modalità aperta
          * 
          */
-        
         
         if (GameEvent.isBiliardinoOpen && !GameEvent.isSimulationOpen)
         {

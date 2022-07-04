@@ -1654,10 +1654,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementImage: {fileID: 804632089}
   playerNumber: {fileID: 10154398}
-  text: {fileID: 892091050}
   indicatore: {fileID: 2001685746}
   listOfActions: {fileID: 2016899758}
   iconActionPrefab: {fileID: 8093369618266391096, guid: 054e9dcb2a0674c49b4869b044acaffc, type: 3}
+  text: {fileID: 892091050}
 --- !u!1 &175781878
 GameObject:
   m_ObjectHideFlags: 0
@@ -9887,7 +9887,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _freeCamera: {fileID: 963194227}
   _biliardinoCamera: {fileID: 481210654}
-  elementiInseriti: {fileID: 1043509308}
 --- !u!114 &1271835259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9900,8 +9899,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b4d1fc20fb1c3a48db6f79fa48e6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _elementiInseriti: {fileID: 1043509308}
-  _iconeInserite: {fileID: 244292636}
+  elementiInseriti: {fileID: 1043509308}
+  iconeInserite: {fileID: 244292636}
 --- !u!114 &1271835260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11344,7 +11343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconeInserite: {fileID: 244292636}
-  actionButton: {fileID: 1301788367}
 --- !u!1 &1480542726
 GameObject:
   m_ObjectHideFlags: 0
@@ -13173,7 +13171,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1162366488}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999447
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13564,7 +13562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 249.99998, y: -149.99997}
+  m_AnchoredPosition: {x: 249.99998, y: -149.99983}
   m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922162195

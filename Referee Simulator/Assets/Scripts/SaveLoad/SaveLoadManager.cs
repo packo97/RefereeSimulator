@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 public static class SaveLoadManager
 {
     private static string pathFolder = "./SavedData/";
-
-    public static int CountNumberOfFilesInFolder()
-    {
-        int fCount = Directory.GetFiles(pathFolder, "*", SearchOption.TopDirectoryOnly).Length;
-        return fCount;
-    }
-
+    
     public static ArrayList GetFilesName()
     {
         ArrayList files = new ArrayList(Directory.GetFiles(pathFolder));
         return files;
     }
-    
     
     public static bool SaveSimulation(string name, string category, string author, string difficulty, string answer, string reason, string state)
     {
@@ -29,15 +23,15 @@ public static class SaveLoadManager
         
         string path = pathFolder + filename;
         
-        
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
         
         List<(Transform, int)> obj = GetAllElementToSave();
         ArrayList icons = GetAllIconsToSave();
-        bool refereeDropped = IsRefereeDropped();
+        bool refereeDropped = GameObject.Find("Controller").GetComponent<PitchController>().IsRefereeDropped();
         ArrayList recording = GetAllRecordingToSave();
         ElementData data = new ElementData(obj, icons, name, category, author, difficulty, answer, reason, state, filename, refereeDropped, recording);
+        
         formatter.Serialize(stream, data);
         stream.Close();
         return true;
@@ -62,18 +56,6 @@ public static class SaveLoadManager
         }
     }
 
-    private static bool IsRefereeDropped()
-    {
-        GameObject contenitoreElementiInseriti = GameObject.Find("ElementiInseriti");
-        for (int i = 0; i < contenitoreElementiInseriti.transform.childCount; ++i)
-        {
-            if (contenitoreElementiInseriti.transform.GetChild(i).GetComponent<Referee>())
-                return true;
-        }
-
-        return false;
-    }
-    
     private static List<(Transform, int)> GetAllElementToSave()
     {
         GameObject contenitoreElementiInseriti = GameObject.Find("ElementiInseriti");
@@ -84,6 +66,7 @@ public static class SaveLoadManager
             if (contenitoreElementiInseriti.transform.GetChild(i).GetComponent<Player>())
                 id = contenitoreElementiInseriti.transform.GetChild(i).GetComponent<Player>().id;
             elementiInseriti.Add((child, id));
+            
         }
         
 
@@ -105,6 +88,7 @@ public static class SaveLoadManager
         for(int i = 0; i < contenitoreIcone.transform.childCount; ++i){
             Transform child = contenitoreIcone.transform.GetChild(i);
             iconeInserite.Add(child);
+            
         }
         
 

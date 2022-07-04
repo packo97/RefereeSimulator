@@ -7,79 +7,54 @@ using UnityEngine.UI;
 public class PosizionamentoMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _iconeInserite;
-
-    [SerializeField] private GameObject actionButton;
-    
     private static GameObject currentElementSelected;
-    
+
     private void Update()
     {
-            // disabilita/abilita seconda aggiunta arbitro
-            foreach (RectTransform obj in GetComponentInChildren<RectTransform>())
+        // disabilita/abilita seconda aggiunta arbitro
+        foreach (RectTransform obj in GetComponentInChildren<RectTransform>())
+        {
+            if (obj.name.Contains("AggiungiArbitroButton"))
             {
-                if (obj.name.Contains("AggiungiArbitroButton"))
+                if (GameEvent.isRefereeDropped)
                 {
-                    if (GameEvent.isRefereeDropped)
-                    {
-                        obj.GetComponent<DragDrop>().enabled = false;
-                        obj.GetComponent<CanvasGroup>().alpha = .6f;
-                    }
-                    else
-                    {
-                        obj.GetComponent<DragDrop>().enabled = true;
-                        obj.GetComponent<CanvasGroup>().alpha = 1f;
-                    }
+                    obj.GetComponent<DragDrop>().enabled = false;
+                    obj.GetComponent<CanvasGroup>().alpha = .6f;
+                }
+                else
+                {
+                    obj.GetComponent<DragDrop>().enabled = true;
+                    obj.GetComponent<CanvasGroup>().alpha = 1f;
                 }
             }
-            /*
-             Attiva bottone che per il momento non mi serve
-            if (currentElementSelected != null)
-            {
-                if (currentElementSelected.tag.Equals("PlayerA") || currentElementSelected.tag.Equals("PlayerB"))
-                    actionButton.SetActive(true);
-                else
-                    actionButton.SetActive(false);
-            }
-            else
-                actionButton.SetActive(false);*/
-            
-            
+        }
     }
 
     public void SwitchComandiPosizionamento()
-   {
-      
-         bool state = gameObject.activeSelf;
-         gameObject.SetActive(!state);
-      
-   }
+    {
+        bool state = gameObject.activeSelf;
+        gameObject.SetActive(!state);
+    }
 
-   public void DeleteAllIconsInserted()
-   {
+    public void DeleteAllIconsInserted() 
+    {
        foreach (RectTransform obj in _iconeInserite.GetComponentsInChildren<RectTransform>())
        {
            if (!obj.gameObject.name.Equals("IconeInserite"))
             Destroy(obj.gameObject);
        }
-   }
-
-
-   public static void SetCurrentElementSelected(GameObject selected)
-   {
+       
+    }
+    public static void SetCurrentElementSelected(GameObject selected)
+    {
        currentElementSelected = selected;
-   }
-
-   public static ref GameObject GetCurrentElementSelected()
-   {
+    }
+    
+    public static ref GameObject GetCurrentElementSelected()
+    {
        return ref currentElementSelected;
-   }
-
-   public void SetActionsOfSelectedPlayer()
-   {
-       currentElementSelected.GetComponentInChildren<Camera>(true).gameObject.SetActive(true);
-       GameEvent.isActionOpen = true;
-   }
-
+    }
+    
    public static List<GameObject> GetAllElementsRecordable()
    {
        bool ballFound = false;
