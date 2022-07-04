@@ -1,4 +1,0 @@
-PROSSIMO STEP
-Save & load elementi inseriti/icone inserite/dati inseriti
-ho alcuni dati nel file, ne servono altri?
-OPZIONI AVANZATE
