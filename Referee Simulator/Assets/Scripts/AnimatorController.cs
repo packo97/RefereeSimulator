@@ -25,6 +25,14 @@ public class AnimatorController : MonoBehaviour
            azione = ActionsController.Azione.PASS_BALL;
        else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("receive"))
            azione = ActionsController.Azione.RECEIVE_BALL;
+       else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("sideLeft"))
+           azione = ActionsController.Azione.SIDE_LEFT;
+       else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("sideRight"))
+           azione = ActionsController.Azione.SIDE_RIGHT;
+       else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("bodyBlockLeft"))
+           azione = ActionsController.Azione.BODY_BLOCK_LEFT;
+       else if (_animator.GetCurrentAnimatorStateInfo(0).IsName("bodyBlockRight"))
+           azione = ActionsController.Azione.BODY_BLOCK_RIGHT;
        
        //Debug.Log(azione + " " + gameObject.name);
    }
@@ -44,8 +52,8 @@ public class AnimatorController : MonoBehaviour
    {
        if (azione == ActionsController.Azione.RUNNING) 
            _animator.SetBool("running", valore);
-       else if (azione == ActionsController.Azione.IDLE)
-           _animator.SetBool("running", false);
+       if (azione == ActionsController.Azione.IDLE)
+           _animator.SetTrigger("idle");
        
        if (azione == ActionsController.Azione.TACKLE)
            _animator.SetTrigger("tackle");
@@ -59,11 +67,33 @@ public class AnimatorController : MonoBehaviour
        if (azione == ActionsController.Azione.RECEIVE_BALL)
            _animator.SetTrigger("receive");
        
+       
+       if (azione == ActionsController.Azione.SIDE_LEFT)
+           _animator.SetBool("sideLeft", valore);
+       
+       if (azione == ActionsController.Azione.SIDE_RIGHT)
+           _animator.SetBool("sideRight", valore);
+       
+       if (azione == ActionsController.Azione.BODY_BLOCK_LEFT)
+           _animator.SetBool("bodyBlockLeft", valore);
+       
+       if (azione == ActionsController.Azione.BODY_BLOCK_RIGHT)
+           _animator.SetBool("bodyBlockRight", valore);
+       
    }
 
    public ActionsController.Azione GetState()
    {
        return azione;
+   }
+
+   public void ResetToIdleAnimation()
+   {
+       _animator.SetBool("running", false);
+       _animator.SetTrigger("idle");
+       _animator.SetBool("sideLeft", false);
+       _animator.SetBool("sideRight", false);
+       
    }
    
 }

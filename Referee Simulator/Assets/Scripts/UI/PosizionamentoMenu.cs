@@ -1,14 +1,17 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class PosizionamentoMenu : MonoBehaviour
+public class PosizionamentoMenu : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private GameObject _iconeInserite;
     private static GameObject currentElementSelected;
-
+    [SerializeField] private GameObject actionMenu;
+    
+    
     private void Update()
     {
         // disabilita/abilita seconda aggiunta arbitro
@@ -27,6 +30,45 @@ public class PosizionamentoMenu : MonoBehaviour
                     obj.GetComponent<CanvasGroup>().alpha = 1f;
                 }
             }
+            else if (obj.name.Contains("AggiungiGiocatoreSquadraAButton"))
+            {
+                if (GameEvent.MaxNumberOfPlayerA)
+                {
+                    obj.GetComponent<DragDrop>().enabled = false;
+                    obj.GetComponent<CanvasGroup>().alpha = .6f;
+                }
+                else
+                {
+                    obj.GetComponent<DragDrop>().enabled = true;
+                    obj.GetComponent<CanvasGroup>().alpha = 1f;
+                }
+            }
+            else if (obj.name.Contains("AggiungiGiocatoreSquadraBButton"))
+            {
+                if (GameEvent.MaxNumberOfPlayerB)
+                {
+                    obj.GetComponent<DragDrop>().enabled = false;
+                    obj.GetComponent<CanvasGroup>().alpha = .6f;
+                }
+                else
+                {
+                    obj.GetComponent<DragDrop>().enabled = true;
+                    obj.GetComponent<CanvasGroup>().alpha = 1f;
+                }
+            }
+            else if (obj.name.Contains("AggiungiPallone"))
+            {
+                if (GameEvent.MaxNumberOfBall)
+                {
+                    obj.GetComponent<DragDrop>().enabled = false;
+                    obj.GetComponent<CanvasGroup>().alpha = .6f;
+                }
+                else
+                {
+                    obj.GetComponent<DragDrop>().enabled = true;
+                    obj.GetComponent<CanvasGroup>().alpha = 1f;
+                }
+            }
         }
     }
 
@@ -34,6 +76,7 @@ public class PosizionamentoMenu : MonoBehaviour
     {
         bool state = gameObject.activeSelf;
         gameObject.SetActive(!state);
+        actionMenu.gameObject.SetActive(false);
     }
 
     public void DeleteAllIconsInserted() 
@@ -82,6 +125,11 @@ public class PosizionamentoMenu : MonoBehaviour
 
        return list;
    }
-   
-   
+
+
+   public void OnPointerClick(PointerEventData eventData)
+   {
+       if (eventData.pointerCurrentRaycast.gameObject == gameObject)
+           actionMenu.gameObject.SetActive(false);
+   }
 }

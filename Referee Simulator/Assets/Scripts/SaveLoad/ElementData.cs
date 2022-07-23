@@ -19,10 +19,15 @@ public class ElementData
             RectTransform rt_icon = icons[i] as RectTransform;
             Transform t_element = rt_icon.GetComponent<DragDrop>().GetElementInThePitch().transform;
             int id_element = 0;
+            bool isGoalKeeper = false;
             if (t_element.GetComponent<Player>())
+            {
                 id_element = t_element.GetComponent<Player>().id;
+                isGoalKeeper = t_element.GetComponent<Player>().GetGoalKeeper();
+            }
+                
             //Element el = new Element(obj[i].Item1, icons[i] as RectTransform, obj[i].Item2);
-            Element el = new Element(t_element, rt_icon, id_element);
+            Element el = new Element(t_element, rt_icon, id_element, isGoalKeeper);
 
             elements.Add(el);
         }
@@ -53,8 +58,9 @@ public class ElementData
         public float iconRotationZ;
 
         public int id;
+        public bool isGoalKeeper;
         
-        public Element(Transform t, RectTransform rt, int id)
+        public Element(Transform t, RectTransform rt, int id, bool isGoalKeeper)
         {
             //info elemento nel pitch
             positionX = t.transform.position.x;
@@ -82,6 +88,7 @@ public class ElementData
             }
 
             this.id = id;
+            this.isGoalKeeper = isGoalKeeper;
         }
     }
     [System.Serializable]

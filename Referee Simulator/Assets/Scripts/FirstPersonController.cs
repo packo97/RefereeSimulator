@@ -24,10 +24,10 @@ public class FirstPersonController : MonoBehaviour
 
     private AnimatorController _animatorController;
 
-    private Ball _ball;
+    public Ball _ball;
 
     public bool isOnFoot;
-    
+
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -99,7 +99,18 @@ public class FirstPersonController : MonoBehaviour
         
             if (_moveDirection.x != 0 || _moveDirection.z != 0)
             {
-                _animatorController.SetParameter("running", true);
+                
+                if ((GetComponent<Player>() && !GetComponent<Player>().GetGoalKeeper()) || GetComponent<Referee>())
+                    _animatorController.SetParameter("running", true);
+                else
+                {
+                    if (_moveDirection.x > 0)
+                        _animatorController.SetParameter("sideLeft", true);
+                    else
+                        _animatorController.SetParameter("sideRight", true);
+                }
+                    
+                
                 if (_ball != null)
                 {
                     _ball.StartBallRotation();
@@ -108,7 +119,8 @@ public class FirstPersonController : MonoBehaviour
             }
             else
             {
-                _animatorController.SetParameter("running", false);
+                _animatorController.ResetToIdleAnimation();
+
                 if (_ball != null)
                 {
                     _ball.SetBallRotation(false);
@@ -135,13 +147,22 @@ public class FirstPersonController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _animatorController = GetComponent<AnimatorController>();
-
+        
         if (isOnFoot)
         {
             _characterController.Move(movement);
             if (movement.x != 0 || movement.z != 0)
             {
-                _animatorController.SetParameter("running", true);
+                if (!GetComponent<Player>().GetGoalKeeper())
+                    _animatorController.SetParameter("running", true);
+                else
+                {
+                    if (movement.x > 0)
+                        _animatorController.SetParameter("sideLeft", true);
+                    else
+                        _animatorController.SetParameter("sideRight", true);
+                    
+                }
                 if (_ball != null)
                 {
                     _ball.StartBallRotation();
@@ -150,7 +171,9 @@ public class FirstPersonController : MonoBehaviour
             }
             else
             {
-                _animatorController.SetParameter("running", false);
+                
+                _animatorController.ResetToIdleAnimation();
+                
                 if (_ball != null)
                 {
                     _ball.SetBallRotation(false);
@@ -159,7 +182,7 @@ public class FirstPersonController : MonoBehaviour
         }
         else
         {
-            _animatorController.SetParameter("running", false);
+            _animatorController.ResetToIdleAnimation();
         }
             
         

@@ -46,6 +46,7 @@ public class FormDati : MonoBehaviour
         else
         {
             _infoBox.SetText("Pay Attention, some data are not filled.", InfoBox.TypeOfMessage.ERROR, true);
+            return;
         }
         
         bool save = SaveLoadManager.SaveSimulation(name_video, category, author, difficulty, answer, reason, state);

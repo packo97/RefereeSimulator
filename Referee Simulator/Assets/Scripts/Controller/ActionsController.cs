@@ -12,7 +12,11 @@ public class ActionsController : MonoBehaviour
         TACKLE,
         FALLEN_AFTER_TACKLE,
         PASS_BALL,
-        RECEIVE_BALL
+        RECEIVE_BALL,
+        SIDE_LEFT,
+        SIDE_RIGHT,
+        BODY_BLOCK_LEFT,
+        BODY_BLOCK_RIGHT
     };
     
     private List<(int,ElementIdentifier,Task)> tasks = new List<(int,ElementIdentifier,Task)>();
@@ -282,6 +286,7 @@ public class ActionsController : MonoBehaviour
          * Imposto tutti gli elementi alla posizione iniziale in base al layer corrente
          */
         recordingMode = false;
+        PosizionamentoMenu.GetCurrentElementSelected().GetComponent<FirstPersonController>()._ball = null;
         PosizionamentoMenu.GetCurrentElementSelected().GetComponent<FirstPersonController>().enabled = false;
         PosizionamentoMenu.GetCurrentElementSelected().GetComponent<Actions>().enabled = false;
 
@@ -382,6 +387,19 @@ public class ActionsController : MonoBehaviour
                     el.GetComponent<AnimatorController>().SetParameter((Azione)rd.actions[i], true);
                 }
                 
+                if (rd.actions[i] == Azione.BODY_BLOCK_LEFT && rd.actions[i-1] != Azione.BODY_BLOCK_LEFT)
+                {
+                    //Debug.Log("BODY BLOCK LEFT");
+                    el.GetComponent<AnimatorController>().SetParameter((Azione)rd.actions[i], true);
+                    //Debug.Log(el.transform.position);
+                }
+                
+                if (rd.actions[i] == Azione.BODY_BLOCK_RIGHT && rd.actions[i-1] != Azione.BODY_BLOCK_RIGHT)
+                {
+                    //Debug.Log("BODY BLOCK RIGHT");
+                    el.GetComponent<AnimatorController>().SetParameter((Azione)rd.actions[i], true);
+                }
+                
                 if (rd.actions[i] == Azione.RECEIVE_BALL && rd.actions[i - 1] != Azione.RECEIVE_BALL)
                 {
                     //Debug.Log("RECEIVE THE BALL");
@@ -391,9 +409,16 @@ public class ActionsController : MonoBehaviour
                     if (ball != null)
                     {
                         if (!ballCatched)
+                        {
+                            el.GetComponent<FirstPersonController>()._ball = ball.GetComponent<Ball>();
                             ball.transform.SetParent(el.transform);
+                        }
                         else
+                        {
+                            el.GetComponent<FirstPersonController>()._ball = null;
                             ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
+                        }
+                           
                     }
                    
                     el.GetComponent<Actions>().SetBallCatched(!ballCatched);
@@ -422,7 +447,9 @@ public class ActionsController : MonoBehaviour
         }
 
         coroutineReplayStarted = false;
-        GameEvent.stopAllCoroutines = false;
+        //GameEvent.stopAllCoroutines = false;
+        //el.GetComponent<AnimatorController>().SetParameter(Azione.IDLE, true);
+        el.GetComponent<AnimatorController>().ResetToIdleAnimation();
     }
 
     private bool AreThereCoroutineInRunningOfLayer(int layer)
@@ -516,7 +543,7 @@ public class ActionsController : MonoBehaviour
                     {
                         ball.transform.SetParent(GameObject.Find("ElementiInseriti").transform);
                         ball.transform.position = rd.initialPositionBall.GetVector3();
-                        
+                        rd.ResetTargetForKicker();
                     }
                         
                 }

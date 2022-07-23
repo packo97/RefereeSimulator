@@ -8,4 +8,8 @@ public class GameEvent
     
     public static bool isRefereeDropped = false;
     public static bool stopAllCoroutines = false;
+
+    public static bool MaxNumberOfPlayerA = false;
+    public static bool MaxNumberOfPlayerB = false;
+    public static bool MaxNumberOfBall = false;
 }

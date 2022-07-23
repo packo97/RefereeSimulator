@@ -668,6 +668,7 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 45
   canMove: 1
+  _ball: {fileID: 0}
   isOnFoot: 1
 --- !u!95 &8146243338564503904
 Animator:

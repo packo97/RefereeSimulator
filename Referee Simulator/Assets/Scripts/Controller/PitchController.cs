@@ -23,6 +23,15 @@ public class PitchController : MonoBehaviour
         return players;
     }
 
+    private void DestroyAllElementsInThePitch()
+    {
+        for(int i=0; i<elementiInseriti.transform.childCount; ++i)
+            Destroy(elementiInseriti.transform.GetChild(i).gameObject);
+        
+        for(int i=0; i<iconeInserite.transform.childCount; ++i)
+            Destroy(iconeInserite.transform.GetChild(i).gameObject);
+    }
+
     public void SetAllElementsToInitialPositionOfTheLayer(int layer)
     {
         /*
@@ -107,8 +116,11 @@ public class PitchController : MonoBehaviour
             GameObject instance = Instantiate(Resources.Load(pathPrefab) as GameObject, elementiInseriti.transform);
             instance.transform.position = new Vector3(element.positionX, element.positionY, element.positionZ);
             instance.transform.eulerAngles = new Vector3(element.rotationX, element.rotationY, element.rotationZ);
-            if (instance.GetComponent<Player>())
-                instance.GetComponent<Player>().id = element.id;
+            
+                
+            
+            
+            
             /*
              * Carica sul terreno di gioco le icone corrispondenti agli elementi della simulazione selezionata
              * 
@@ -150,6 +162,17 @@ public class PitchController : MonoBehaviour
             
             if (element.type.Equals("Referee"))
                 GameEvent.isRefereeDropped = true;
+            
+            if (instance.GetComponent<Player>())
+            {
+                instance.GetComponent<Player>().id = element.id;
+                if (element.isGoalKeeper)
+                {
+                    SwitchPlayerToGoalKeeper(instance.GetComponent<Player>());
+                }
+                instance.GetComponent<Player>().SetGoalKeeper(element.isGoalKeeper);
+            }
+            
             
             //setto le azioni registrate per gli elementi caricati
             GameObject.Find("Controller").GetComponent<ActionsController>().SetActionsRegistered(_elementData.recording);
@@ -232,5 +255,86 @@ public class PitchController : MonoBehaviour
 
         return false;
 
+    }
+
+    public void SwitchPlayerToGoalKeeper(Player player)
+    {
+        GameObject shirt = player.GetShirt();
+        GameObject shorts = player.GetShorts();
+        GameObject socks = player.GetSocks();
+
+        GameObject iconaPlayer = FindIconFromPlayer(player);
+        
+        if (player.GetGoalKeeper())
+        {
+            if (player.tag.Equals("PlayerA"))
+            {
+                shirt.GetComponent<Renderer>().material = Resources.Load("Materials/Red") as Material;
+                shorts.GetComponent<Renderer>().material = Resources.Load("Materials/Black") as Material;
+                socks.GetComponent<Renderer>().material = Resources.Load("Materials/Red") as Material;
+                iconaPlayer.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/PlayerA") as Sprite;
+            }
+            else if (player.tag.Equals("PlayerB"))
+            {
+                shirt.GetComponent<Renderer>().material = Resources.Load("Materials/Azzurro") as Material;
+                shorts.GetComponent<Renderer>().material = Resources.Load("Materials/BluScuro") as Material;
+                socks.GetComponent<Renderer>().material = Resources.Load("Materials/Azzurro") as Material;
+                iconaPlayer.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/PlayerB") as Sprite;
+            }
+            
+        }
+        else
+        {
+            if (player.tag.Equals("PlayerA"))
+            {
+                shirt.GetComponent<Renderer>().material = Resources.Load("Materials/Green") as Material;
+                shorts.GetComponent<Renderer>().material = Resources.Load("Materials/DarkGreen") as Material;
+                socks.GetComponent<Renderer>().material = Resources.Load("Materials/Green") as Material;
+                iconaPlayer.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/GoalKeeperA") as Sprite;
+            }
+            else if (player.tag.Equals("PlayerB"))
+            {
+                shirt.GetComponent<Renderer>().material = Resources.Load("Materials/Orange") as Material;
+                shorts.GetComponent<Renderer>().material = Resources.Load("Materials/DarkOrange") as Material;
+                socks.GetComponent<Renderer>().material = Resources.Load("Materials/Orange") as Material;
+                iconaPlayer.GetComponent<Image>().sprite = Resources.Load<Sprite>("Icons/GoalKeeperB") as Sprite;
+            }
+        }
+    }
+
+    public GameObject FindIconFromPlayer(Player player)
+    {
+        for (int i = 0; i < iconeInserite.transform.childCount; ++i)
+        {
+            GameObject obj = iconeInserite.transform.GetChild(i).GetComponent<DragDrop>().GetElementInThePitch();
+            if (obj.GetComponent<Player>())
+            {
+                Player playerIcon = obj.GetComponent<Player>();
+                if (playerIcon.id == player.id && playerIcon.tag.Equals(player.tag))
+                    return iconeInserite.transform.GetChild(i).gameObject;
+            }
+        }
+
+        return null;
+    }
+
+    public int GetNextAvailableNumber(string team)
+    {
+        List<int> numbers = new List<int>();
+        foreach (Player player in elementiInseriti.GetComponentsInChildren<Player>())
+        {
+            if (player.tag.Equals(team))
+                if (!numbers.Contains(player.id))
+                    numbers.Add(player.id);
+        }
+
+        numbers.Sort();
+        foreach (int number in numbers)
+        {
+            if (!numbers.Contains(number + 1))
+                return number + 1;
+        }
+        
+        return 1;
     }
 }

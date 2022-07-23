@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private EditorMenu _editorMenu;
     [SerializeField] private ManagerMenu _managerMenu;
 
+    [SerializeField] private Image yellowOrRedCardImage;
+    
     private void Start()
     {
         _editorMenu.CloseEditor();
@@ -20,6 +23,37 @@ public class UIController : MonoBehaviour
          * 
          */
         
+        //Debug.Log("SIMULATION " + GameEvent.isSimulationOpen + " MANAGER " + GameEvent.isManagerOpen + " EDITOR " + GameEvent.isEditorOpen);
+        //Debug.Log("coroutine: " + GameEvent.stopAllCoroutines);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+
+            if (!GameEvent.isSimulationOpen && GameEvent.isManagerOpen && !GameEvent.isEditorOpen)
+            {
+                CloseSimulationFromManager();
+            }
+            else if (GameEvent.isSimulationOpen && GameEvent.isManagerOpen && GameEvent.isEditorOpen)
+            {
+                _editorMenu.CloseSimulation();
+                gameObject.GetComponent<ActionsController>().SetAllElementsToInitialPosition(0);
+                OpenEditor();
+            }
+            else if (GameEvent.isSimulationOpen && !GameEvent.isManagerOpen && GameEvent.isEditorOpen)
+            {
+                _editorMenu.CloseSimulation();
+                gameObject.GetComponent<ActionsController>().SetAllElementsToInitialPosition(0);
+            }
+            else if (GameEvent.isSimulationOpen && GameEvent.isManagerOpen && !GameEvent.isEditorOpen)
+            {
+                gameObject.GetComponent<ActionsController>().SetAllElementsToInitialPosition(0);
+                CloseSimulationFromManager();
+            }
+            GameEvent.stopAllCoroutines = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            yellowOrRedCardImage.enabled = false;
+        }
+/*
         if (GameEvent.isSimulationOpen)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -28,7 +62,8 @@ public class UIController : MonoBehaviour
                 {
                     CloseSimulationFromManager();
                     GameEvent.stopAllCoroutines = true;
-                    _editorMenu.DestroyAllElementsInserted();
+                    //_editorMenu.DestroyAllElementsInserted();
+                    //GetComponent<ActionsController>().DeleteRecordings();
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
@@ -38,12 +73,11 @@ public class UIController : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                 }
-                gameObject.GetComponent<ActionsController>().SetAllElementsToInitialPosition(0);  
+                gameObject.GetComponent<ActionsController>().SetAllElementsToInitialPosition(0);
+                yellowOrRedCardImage.enabled = false;
             }
-            
-            
         }
-        
+*/
     }
 
     public void OpenHomeEducatore()
@@ -92,6 +126,7 @@ public class UIController : MonoBehaviour
     public void CloseSimulationFromManager()
     {
         _editorMenu.DestroyAllElementsInserted();
+        GetComponent<ActionsController>().DeleteRecordings();
         _managerMenu.CloseSimulation();
         _managerMenu.OpenManager();
         

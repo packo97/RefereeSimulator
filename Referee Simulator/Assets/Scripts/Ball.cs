@@ -40,7 +40,6 @@ public class Ball : MonoBehaviour
             transform.Rotate(-5f, 0, 0);
             yield return null;
         }
-
         _rotationStarted = false;
     }
     
@@ -80,5 +79,10 @@ public class Ball : MonoBehaviour
     {
         //Debug.Log("get target che vado ad aggiungere" + _target);
         return _target;
+    }
+
+    private void OnDestroy()
+    {
+        GameEvent.MaxNumberOfBall = false;
     }
 }

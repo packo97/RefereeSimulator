@@ -16,29 +16,63 @@ public class ActionsMenu : MonoBehaviour
     [SerializeField] private GameObject iconActionPrefab;
     private int numberOfActionInserted;
     [SerializeField] private Text text;
+    [SerializeField] private Button actionButton;
+
+    [SerializeField] private Image goalKeeperImage;
+    
     private void Start()
     {
         gameObject.SetActive(false);
     }
 
+    public GameObject GetCurrentObject()
+    {
+        return _currentObjSelected;
+    }
+    
     public void SetElement(GameObject obj)
     {
         /*
          * Imposto l'elemento corrente
          */
+        if (obj.tag.Equals("Referee"))
+        {
+            actionButton.gameObject.SetActive(false);
+            playerNumber.gameObject.SetActive(false);
+            goalKeeperImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            actionButton.gameObject.SetActive(true);
+            playerNumber.gameObject.SetActive(true);
+            goalKeeperImage.gameObject.SetActive(true);
+        }
+            
         
         _currentObjSelected = obj;
         gameObject.SetActive(true);
         indicatore.SetElement(obj);
         
+        if (_currentObjSelected.GetComponent<Player>())
+            if (_currentObjSelected.GetComponent<Player>().GetGoalKeeper())
+                goalKeeperImage.color = new Color32(234,234,100,255);
+            else
+                goalKeeperImage.color = new Color32(255,255,255,255);
+        
         if (obj.tag.Equals("PlayerA"))
         {
-            elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerA") as Sprite;
+            if (obj.GetComponent<Player>().GetGoalKeeper())
+                elementImage.sprite = Resources.Load<Sprite>("Icons/GoalKeeperA") as Sprite;
+            else
+                elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerA") as Sprite;
             playerNumber.text = obj.GetComponent<Player>().id.ToString();
         }
         else if (obj.tag.Equals("PlayerB"))
         {
-            elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerB") as Sprite;
+            if (obj.GetComponent<Player>().GetGoalKeeper())
+                elementImage.sprite = Resources.Load<Sprite>("Icons/GoalKeeperB") as Sprite;
+            else
+                elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerB") as Sprite;
             playerNumber.text = obj.GetComponent<Player>().id.ToString();
         }
         else if (obj.tag.Equals("Referee"))
@@ -142,4 +176,33 @@ public class ActionsMenu : MonoBehaviour
          */
         text.text = testo;
     }
+
+    public void SwitchGoalKeeper()
+    {
+        PitchController pitchController = GameObject.Find("Controller").GetComponent<PitchController>();
+        bool isGoalKeeper = _currentObjSelected.GetComponent<Player>().GetGoalKeeper();
+        if (isGoalKeeper)
+        {
+            if (_currentObjSelected.tag.Equals("PlayerA"))
+                elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerA") as Sprite;
+            else if (_currentObjSelected.tag.Equals("PlayerB"))
+                elementImage.sprite = Resources.Load<Sprite>("Icons/PlayerB") as Sprite;
+            
+            goalKeeperImage.color = new Color32(255,255,255,255);
+            pitchController.SwitchPlayerToGoalKeeper(_currentObjSelected.GetComponent<Player>());
+            _currentObjSelected.GetComponent<Player>().SetGoalKeeper(false);
+            
+        }
+        else
+        {
+            if (_currentObjSelected.tag.Equals("PlayerA"))
+                elementImage.sprite = Resources.Load<Sprite>("Icons/GoalKeeperA") as Sprite;
+            else if (_currentObjSelected.tag.Equals("PlayerB"))
+                elementImage.sprite = Resources.Load<Sprite>("Icons/GoalKeeperB") as Sprite;
+            goalKeeperImage.color = new Color32(234,234,100,255);
+            pitchController.SwitchPlayerToGoalKeeper(_currentObjSelected.GetComponent<Player>());
+            _currentObjSelected.GetComponent<Player>().SetGoalKeeper(true);
+        }
+    }
+    
 }

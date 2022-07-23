@@ -16,6 +16,22 @@ public class Actions : MonoBehaviour
 
     void Update()
     {
+        Player player = GetComponent<Player>();
+        bool isGoalKeeper = player.GetGoalKeeper();
+
+        if (isGoalKeeper)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _animatorController.SetTrigger("bodyBlockLeft");
+                //Debug.Log("pos1 " + transform.position);
+            }
+                
+            else if (Input.GetMouseButtonDown(1))
+                _animatorController.SetTrigger("bodyBlockRight");
+        }
+        
+        
         if (Input.GetMouseButtonDown(0) && !_ballCatched)
         {
             //Esegui tackle
@@ -104,11 +120,18 @@ public class Actions : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Body") && !_hasCollide)
         {
-            if (gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.TACKLE && !ReferenceEquals(gameObject, other.transform.parent.gameObject))
+            //Debug.Log("collisione con " + other.transform.parent.name + " " + gameObject.GetComponent<AnimatorController>().GetState());
+            if ((gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.TACKLE 
+                 || gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.BODY_BLOCK_LEFT 
+                 || gameObject.GetComponent<AnimatorController>().GetState() == ActionsController.Azione.BODY_BLOCK_RIGHT) 
+                && !ReferenceEquals(gameObject, other.transform.parent.gameObject))
             {
                 //Debug.Log("collisione con " + other.transform.parent.name);
                 other.gameObject.GetComponentInParent<AnimatorController>().SetTrigger("afterTackle");
                 other.gameObject.GetComponentInParent<FirstPersonController>().isOnFoot = false;
+                Ball ball = other.gameObject.GetComponentInParent<FirstPersonController>()._ball;
+                if (ball != null)
+                    ball.SetBallRotation(false);
                 _hasCollide = true;
                 StartCoroutine(ResetCollision());
             }
@@ -118,7 +141,7 @@ public class Actions : MonoBehaviour
 
     private IEnumerator ResetCollision()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         _hasCollide = false;
     }
 

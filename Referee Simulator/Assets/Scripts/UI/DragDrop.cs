@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -87,7 +88,13 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 obj = Instantiate(objPrefab, GameObject.Find("ElementiInseriti").transform) as GameObject;
                 obj.transform.position = hit.point;
                 if (obj.tag.Equals("Ball"))
+                {
                     obj.transform.position = new Vector3(hit.point.x, 0.17f, hit.point.z);
+                    int numberOfBall = GameObject.Find("Controller").GetComponent<PitchController>().GetNumberOfElement(obj.tag);
+                    if (numberOfBall >= 2)
+                        GameEvent.MaxNumberOfBall = true;
+                }
+                    
                 _isDropped = true;
                 if (obj.name.Contains("Referee"))
                 {
@@ -97,9 +104,18 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
                 gameObject.transform.SetParent(GameObject.Find("IconeInserite").transform);
                 /*if (directionPrefab != null)
                     Instantiate(directionPrefab, gameObject.transform);*/
-                
+
                 if (obj.GetComponent<Player>() != null)
-                    obj.GetComponent<Player>().id = GameObject.Find("Controller").GetComponent<PitchController>().GetNumberOfElement(obj.tag);
+                {
+                    int numberOfPlayerForTheSameTeam = GameObject.Find("Controller").GetComponent<PitchController>().GetNumberOfElement(obj.tag);
+                    obj.GetComponent<Player>().id = GameObject.Find("Controller").GetComponent<PitchController>().GetNextAvailableNumber(obj.tag);;
+                    if (numberOfPlayerForTheSameTeam >= 20 && (obj.tag.Contains("A")))
+                        GameEvent.MaxNumberOfPlayerA = true;
+                    else if (numberOfPlayerForTheSameTeam >= 20 && (obj.tag.Contains("B")))
+                        GameEvent.MaxNumberOfPlayerB = true;
+                }
+
+
             }
             else
             {
@@ -158,9 +174,11 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         if (_isDropped)
         {
-            PosizionamentoMenu.SetCurrentElementSelected(obj);
-            actionMenu.GetComponent<ActionsMenu>().SetElement(obj);
+            if (!obj.tag.Equals("Ball"))
+            {
+                PosizionamentoMenu.SetCurrentElementSelected(obj);
+                actionMenu.GetComponent<ActionsMenu>().SetElement(obj);
+            }
         }
-        
     }
 }
