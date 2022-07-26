@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Cursor = UnityEngine.Cursor;
 
 public class ActionsController : MonoBehaviour
@@ -34,13 +35,17 @@ public class ActionsController : MonoBehaviour
 
     [SerializeField] private EditorMenu editorMenu;
     [SerializeField] private InfoBox infoBox;
-
+    [SerializeField] private Image recordingModeImage;
+    [SerializeField] private Image replayModeImage;
+    
     private void Start()
     {
         recording = new ArrayList();
         recordingMode = false;
         coroutineReplayStarted = false;
         target_kickerID_layer = new List<TargetForElement>();
+        recordingModeImage.gameObject.SetActive(false);
+        replayModeImage.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -49,24 +54,25 @@ public class ActionsController : MonoBehaviour
         if (GameEvent.isActionOpen)
         {
             if(!recordingMode)
-                infoBox.SetText("Press Enter to move player and start recording\n" +
+                /*infoBox.SetText("Press Enter to move player and start recording\n" +
                                 "Press R to replay\n" +
                                 "Press P to back to initial position\n" +
-                                "Press ESC to exit", InfoBox.TypeOfMessage.INFO, false);
+                                "Press ESC to exit", InfoBox.TypeOfMessage.INFO, false);*/
             
             PosizionamentoMenu.GetCurrentElementSelected().GetComponentInChildren<Camera>().depth = 1;
-            
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             // Se premo il tasto ENTER
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) && !recordingMode)
             {
-                infoBox.SetText("Press P to stop recording", InfoBox.TypeOfMessage.INFO, false);
-                
+                //infoBox.SetText("Press P to stop recording", InfoBox.TypeOfMessage.INFO, false);
+                replayModeImage.gameObject.SetActive(false);
+                recordingModeImage.gameObject.SetActive(true);
                 // abilito il movimento del player corrente
                 _element = PosizionamentoMenu.GetCurrentElementSelected();
                 _element.GetComponent<FirstPersonController>().enabled = true;
                 _element.GetComponent<Actions>().enabled = true;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                
                 
                 // resetto variabili di utilizzo
                 recordingMode = true;
@@ -110,6 +116,8 @@ public class ActionsController : MonoBehaviour
                  * Mando in background la camera del player selezionato
                  * Imposto gli elementi alla posizione iniziale del layer 0
                  */
+                recordingModeImage.gameObject.SetActive(false);
+                replayModeImage.gameObject.SetActive(false);
                 GameEvent.stopAllCoroutines = true;
                 PosizionamentoMenu.GetCurrentElementSelected().GetComponent<FirstPersonController>().enabled = false;
                 PosizionamentoMenu.GetCurrentElementSelected().GetComponent<Actions>().enabled = false;
@@ -121,7 +129,7 @@ public class ActionsController : MonoBehaviour
                 recordingMode = false;
                 
                 SetAllElementsToInitialPosition(0);
-                infoBox.gameObject.SetActive(false);
+                //infoBox.gameObject.SetActive(false);
             }
             // se premo il tasto P
             else if (Input.GetKeyDown(KeyCode.P))
@@ -130,6 +138,8 @@ public class ActionsController : MonoBehaviour
                  * Stop della registrazione
                  * Resetto il target for kicker
                  */
+                replayModeImage.gameObject.SetActive(false);
+                recordingModeImage.gameObject.SetActive(false);
                 GameEvent.stopAllCoroutines = true;
                 StopRecording();
 
@@ -142,6 +152,7 @@ public class ActionsController : MonoBehaviour
             // se non sto registrando e premo il tasto R
             else if (!recordingMode && Input.GetKeyDown(KeyCode.R))
             {
+                replayModeImage.gameObject.SetActive(true);
                 // imposto tutti gli elementi alla posizione iniziale del layer 0
                 SetAllElementsToInitialPosition(0);
                 //faccio partire il replay
@@ -391,7 +402,6 @@ public class ActionsController : MonoBehaviour
                 {
                     //Debug.Log("BODY BLOCK LEFT");
                     el.GetComponent<AnimatorController>().SetParameter((Azione)rd.actions[i], true);
-                    //Debug.Log(el.transform.position);
                 }
                 
                 if (rd.actions[i] == Azione.BODY_BLOCK_RIGHT && rd.actions[i-1] != Azione.BODY_BLOCK_RIGHT)

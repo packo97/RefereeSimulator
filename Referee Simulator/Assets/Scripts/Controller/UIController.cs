@@ -8,12 +8,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private ManagerMenu _managerMenu;
 
     [SerializeField] private Image yellowOrRedCardImage;
+
+    [SerializeField] private Texture2D whistleCursor;
     
     private void Start()
     {
         _editorMenu.CloseEditor();
         _managerMenu.CloseManager();
         _homeEducatore.Open();
+        
+        Cursor.SetCursor(whistleCursor, new Vector2(20, 12.5f), CursorMode.Auto);
     }
 
     private void Update()

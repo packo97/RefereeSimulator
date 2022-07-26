@@ -21,6 +21,8 @@ public class EditorMenu : MonoBehaviour
     [SerializeField] private Button playButton;
 
     [SerializeField] private ActionsMenu actionMenu;
+
+    [SerializeField] private Image helpImage;
     
     private void Start()
     {
@@ -50,7 +52,7 @@ public class EditorMenu : MonoBehaviour
         { 
             if(!obj.gameObject.GetComponent<PosizionamentoMenu>() && !obj.gameObject.GetComponent<FormDati>())
                 obj.gameObject.SetActive(true);
-            if(obj.gameObject.name.Equals("ExitSimulationButton"))
+            if(obj.gameObject.GetComponent<ComandoSimulazione>())
                 obj.gameObject.SetActive(false);
         }
     }
@@ -79,10 +81,7 @@ public class EditorMenu : MonoBehaviour
 
             if (obj.GetComponent<ComandoSimulazione>())
             {
-                if(obj.gameObject.name.Equals("PlayButton"))
-                    obj.gameObject.SetActive(!GameEvent.isBiliardinoOpen);
-                else if (obj.gameObject.name.Equals("ExitSimulationButton"))
-                    obj.gameObject.SetActive(false);
+                obj.gameObject.SetActive(false);
             }
                 
         }
@@ -95,6 +94,7 @@ public class EditorMenu : MonoBehaviour
         _cameraBiliardino.gameObject.SetActive(true);
         _posizionamentoMenu.SwitchComandiPosizionamento();
         cameraButton.gameObject.SetActive(true);
+        helpImage.gameObject.SetActive(false);
     }
     
     public void PlaySimulation()
@@ -110,7 +110,7 @@ public class EditorMenu : MonoBehaviour
                     obj.gameObject.SetActive(false);
                 }
                 
-                if(obj.gameObject.name.Equals("ExitSimulationButton"))
+                if(obj.gameObject.GetComponent<ComandoSimulazione>())
                     obj.gameObject.SetActive(true);
             
             }
@@ -142,7 +142,7 @@ public class EditorMenu : MonoBehaviour
                     obj.gameObject.SetActive(true);
                 }
             
-                if(obj.gameObject.name.Equals("ExitSimulationButton"))
+                if(obj.gameObject.GetComponent<ComandoSimulazione>())
                     obj.gameObject.SetActive(false);
             
             }    
@@ -225,7 +225,7 @@ public class EditorMenu : MonoBehaviour
         closeButton.gameObject.SetActive(false);
         
         //_posizionamentoMenu.SetActionsOfSelectedPlayer();
-        
+        helpImage.gameObject.SetActive(true);
         actionMenu.OpenActionMode(numero);
     }
 }

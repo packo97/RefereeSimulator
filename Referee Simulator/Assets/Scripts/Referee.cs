@@ -33,19 +33,16 @@ public class Referee : MonoBehaviour
             {
                 isWhistling = true;
                 audioSource.Play();
-                Debug.Log("fischioooooo"); 
             }
             if (Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftControl))
             {
                 yellowOrRedCardImage.enabled = true;
                 yellowOrRedCardImage.sprite = redSprite;
-                Debug.Log("espulsioneee");
             }
             else if (Input.GetMouseButtonDown(1))
             {
                 yellowOrRedCardImage.enabled = true;
                 yellowOrRedCardImage.sprite = yellowSprite;
-                Debug.Log("ammonizioneee");
             }
             
         }

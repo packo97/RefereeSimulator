@@ -91,6 +91,7 @@
      <Compile Include="Assets\Scripts\SaveLoad\Vector3Surrogate.cs" />
      <Compile Include="Assets\Scripts\SaveLoad\SaveLoadManager.cs" />
      <Compile Include="Assets\Scripts\UI\ActionIcon.cs" />
+     <Compile Include="Assets\Scripts\UI\ComandoHelp.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/home/pasquale/2020.3.33f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

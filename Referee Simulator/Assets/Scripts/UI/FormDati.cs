@@ -25,7 +25,12 @@ public class FormDati : MonoBehaviour
     public void CloseFormDati()
     {
         gameObject.SetActive(false);
-        
+        inputName.text = "";
+        inputCategory.captionText.text = "";
+        inputDifficulty.captionText.text = "";
+        inputAnswer.text = "";
+        inputReason.text = "";
+        inputState.captionText.text = "";
     }
 
     public void SaveFormDati()

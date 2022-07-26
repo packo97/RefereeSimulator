@@ -8,6 +8,11 @@ using UnityEngine.UI;
 public static class SaveLoadManager
 {
     private static string pathFolder = "./SavedData/";
+
+    static SaveLoadManager()
+    {
+        Directory.CreateDirectory("./SavedData");
+    }
     
     public static ArrayList GetFilesName()
     {

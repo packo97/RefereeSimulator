@@ -24,7 +24,6 @@ public class Actions : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 _animatorController.SetTrigger("bodyBlockLeft");
-                //Debug.Log("pos1 " + transform.position);
             }
                 
             else if (Input.GetMouseButtonDown(1))

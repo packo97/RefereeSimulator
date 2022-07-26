@@ -9,6 +9,15 @@ public class HomeEducatore : MonoBehaviour
     [SerializeField] private EditorMenu _editorMenu;
     [SerializeField] private ManagerMenu _managerMenu;
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+            //UnityEditor.EditorApplication.isPlaying = false;
+        }
+    }
+
     public void Open()
     {
         gameObject.SetActive(true);

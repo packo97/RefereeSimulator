@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ManagerMenu : MonoBehaviour
@@ -11,13 +12,14 @@ public class ManagerMenu : MonoBehaviour
     [SerializeField] private GameObject contenitoreSimulazioni;
     [SerializeField] private SimulationDetails simulationDetails;
     [SerializeField] private Dropdown selectCategory;
-    [SerializeField] private Button _exitButton;
-    [SerializeField] private InfoBox _infoBox;
+    [SerializeField] private Image helpImage;
+    [SerializeField] private Button exitButton;
+    [SerializeField] private InfoBox infoBox;
     private static IconaSimulazione icon_selected;
 
     private void Start()
     {
-        _exitButton.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -39,7 +41,8 @@ public class ManagerMenu : MonoBehaviour
     public void OpenManager()
     {
         gameObject.SetActive(true);
-        _exitButton.gameObject.SetActive(false);
+        helpImage.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
         GameEvent.isManagerOpen = true;
         CleanManager();
         LoadAllSimulation();
@@ -126,16 +129,18 @@ public class ManagerMenu : MonoBehaviour
         }
         else
         {
-            _infoBox.SetText("Referee is not added in the pitch.", InfoBox.TypeOfMessage.ERROR, true);
+            infoBox.SetText("Referee is not added in the pitch.", InfoBox.TypeOfMessage.ERROR, true);
         }
-        _exitButton.gameObject.SetActive(true);
+
+        helpImage.gameObject.SetActive(true);
+        exitButton.gameObject.SetActive(true);
     }
     
     
     public void CloseSimulation()
     {
         GameEvent.isSimulationOpen = false;
-        _exitButton.gameObject.SetActive(false);
+        exitButton.gameObject.SetActive(false);
         Referee referee = FindReferee();
         if (referee != null)
             referee.GetComponent<FirstPersonController>().enabled = false;
